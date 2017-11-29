@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://ftorrenegrag@bitbucket.org/ftorrenegrag/meira-web.git"
+    "url": "git+https://github.com/FTorrenegraG/conexo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://ftorrenegrag@bitbucket.org/ftorrenegrag/meira-web/issues"
+    "url": "https://github.com/FTorrenegraG/conexo/issues"
   },
   "devDependencies": {
     "jquery":"3.2.1",
