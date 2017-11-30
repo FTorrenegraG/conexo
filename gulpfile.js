@@ -115,7 +115,7 @@ gulp.task('serve', [
   'conca_css_import'
   ], function (){
   gulp.watch(config.sassPath + '/**/*.scss', ['css']); 
-  gulp.watch('app/js/angular_core/*/**/*.js', ['conca_angular_core']); 
+  gulp.watch('app/js/angular_core/**/*.js', ['conca_angular_core']); 
   // Reloads the browser whenever HTML or JS files change
   gulp.watch('app/*.html', browserSync.reload);
   gulp.watch('app/partial-views/**/*.html', browserSync.reload); 

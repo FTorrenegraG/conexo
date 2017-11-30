@@ -8142,3 +8142,82 @@ button.close {
   margin: 0;
   overflow: visible;
   clip: auto; }
+
+html {
+  height: 100%; }
+  html body {
+    height: 100%; }
+
+nav a {
+  color: white !important; }
+
+.navbar-transparent {
+  background-color: transparent;
+  background: transparent;
+  border-color: transparent; }
+
+.container-custom-1 {
+  width: 90%;
+  height: 116px;
+  margin: 0 auto; }
+
+.nav {
+  height: 116px; }
+
+.navbar-brand {
+  margin-top: 15px; }
+
+.navbar-collapse {
+  text-align: center; }
+
+.navbar-center {
+  width: 90%;
+  position: absolute;
+  display: flex;
+  justify-content: center; }
+  .navbar-center li {
+    margin: 0 50px; }
+
+.center_v {
+  display: flex;
+  align-items: center; }
+
+.home-div {
+  height: 120vh;
+  position: absolute;
+  background: #062F48;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #062F48, #3E4379);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #062F48, #3E4379);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #062F48, #3E4379);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #062F48, #3E4379);
+  /* Standard syntax */
+  color: white;
+  display: flex;
+  align-items: center; }
+  .home-div .form-group {
+    margin: 0 auto;
+    width: 60%; }
+    .home-div .form-group span {
+      margin-top: 15px;
+      display: block; }
+      .home-div .form-group span a {
+        color: #8D2F7A;
+        margin-top: 120px;
+        font-size: 20px; }
+    .home-div .form-group label {
+      text-align: left;
+      font-size: 80px;
+      line-height: 70px;
+      font-style: italic; }
+    .home-div .form-group .input-home-search {
+      margin: 15px 0;
+      width: 100%;
+      height: 80px;
+      color: black;
+      font-size: 30px;
+      padding: 10px 20px 10px 20px;
+      border-radius: 10px; }
