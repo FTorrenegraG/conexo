@@ -1,9 +1,10 @@
-$icon-font-path: '../fonts/bootstrap/';
-@function font-path($path) {
-  @return $path;
-}
+//$icon-font-path: '../fonts/bootstrap/';
+//@function font-path($path) {
+//  @return $path;
+//}
 // @import "bootstrap-compass";
 // @import "bootstrap-sprockets";
+@import url('https://fonts.googleapis.com/css?family=Rambla|Roboto');
 @import "bootstrap";
 @import "font-awesome";
 
@@ -11,8 +12,13 @@ $gradient_home_1: #062F48;
 $gradient_home_2: #3E4379;
 $color_a: #8D2F7A;
 $height_nav: 116px;
+$color_button_search_back: #4CBFAE;
+$color_button_search_up: #D72E92;
+$font-default: 'Roboto';
+$font-special: 'Rambla';
 html{
 	height: 100%;
+	font-family: $font-default, sans-serif;
 	body{
 		height: 100%;
 	}
@@ -26,8 +32,11 @@ nav{
    background-color: transparent;
    background: transparent;
    border-color: transparent;
-   li { 
-   }
+   .open { 
+	   background-color: transparent;
+	   background: transparent;
+	   border-color: transparent;
+	}
 }
 .container-custom-1{
 	width: 90%;
@@ -36,7 +45,19 @@ nav{
 }
 .nav{
 	height: $height_nav;
-
+}
+.login{
+	li:first-child{
+		&:after{
+			    content: " ";
+			    color: white;
+			    position: absolute;
+			    right: 0;
+			    top: 15px;
+			    height: 20px;
+			    border: 0.5px solid white;
+		}
+	}
 }
 .navbar-brand{
 	margin-top: 15px;
@@ -58,7 +79,7 @@ nav{
 	align-items: center;
 }
 .home-div{
-	height: 120vh;
+	height: 100vh;
 	position: absolute;
 	background: $gradient_home_1; /* For browsers that do not support gradients */
 	background: -webkit-linear-gradient(left top, $gradient_home_1, $gradient_home_2); /* For Safari 5.1 to 6.0 */
@@ -68,33 +89,58 @@ nav{
 	color: white;
 	display: flex;
 	align-items: center;
-	.form-group{
+	.from-group-search-home{
 		margin: 0 auto;
 		width: 60%;
-		span{
+		.advance-search-span{
 			margin-top: 15px;
 			display: block;
 			a{
+				font-weight: bold;
 				color: $color_a;
 				margin-top: 120px;
 				font-size: 20px;
 			}
 		}
 		label{
+			font-family: $font-special, sans-serif;
 			text-align: left;
 			font-size: 80px;
-			line-height: 70px;
+			line-height: 75px;
 			font-style: italic;
 			// margin-top: 10%;
 		}
-		.input-home-search{
+		.input-search{
 			margin: 15px 0;
 			width: 100%;
-			height: 80px;
-			color: black;
-			font-size: 30px;
-			padding: 10px 20px 10px 20px;
-			border-radius: 10px;
+			input{
+				height: 80px;
+				color: black;
+				font-size: 20px;
+				font-style: italic;
+				padding: 10px 20px 10px 20px;
+				border-radius: 10px 0 0 10px;
+			}
+			.input-group-addon{
+				width: 80px;
+				font-size: 35px;
+				padding: 0 0 7px 15px;
+				border-radius: 0 10px 10px 0;
+				background-color: $color_button_search_back;
+				border-color: $color_button_search_back;
+				color: white;
+				&:before{
+					content: "";
+					position: absolute;
+					background-color: $color_button_search_up;
+					border-color: $color_button_search_up;
+					border-radius: 0 10px 10px 0;
+					width: 80px;
+					top: -5px;
+					right: -5px;
+					height: 80px;
+				}
+			}
 		}
 	}
 }
