@@ -51,10 +51,10 @@ gulp.task('conca_angular_core',function () {
       'app/js/angular_core/factories/**/*.js',
       'app/js/angular_core/services/**/*.js',
       'app/js/angular_core/controllers/**/*.js',
-      'app/js/angular_core/app.js'
+      'app/js/angular_core/*.js'
     ])
-    .pipe(concat('bundle.js'))
-    .pipe(gulp.dest('app/js/angular_core'));
+    .pipe(concat('bundle-angular.js'))
+    .pipe(gulp.dest('app/js'));
 })
 gulp.task('conca_css_import',function () {
   return gulp.src('app/css/imports/*.css')

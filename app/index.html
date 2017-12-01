@@ -34,15 +34,14 @@
     <script src="js/libs/angular_libs.js"></script>
     <!--endbuild-->
     <!-- URL API -->
-    <!--build:js js/angular_core/app.min.js -->
-    <script src="js/angular_core/app.js"></script>
-    <!--endbuild-->
     <!--build:js js/angular_core/bundle.min.js -->
-    <script src="js/angular_core/bundle.js"></script>
+    <script src="js/bundle-angular.js"></script>
     <!--endbuild-->
   </head>
 <body>
-    <nav class="navbar navbar-default navbar-transparent navbar-fixed-top">
+    <nav ng-controller="indexController as indexCtrl" class="navbar navbar-default navbar-transparent navbar-fixed-top">
+      <div scroll="100" class="background-nav" ng-show="boolChangeClass">
+      </div>
       <div class="container-custom-1">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -78,5 +77,71 @@
     <div class="container-fluid">
         <div class="ng-view"></div>
     </div>
+    <footer ng-controller="indexController as indexCtrl" class="footer">
+        <div class="row footer-1">
+            <div class="container margin-top">
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <a href="#" class="col-xs-12"><b>Home</b></a>
+                                <a href="#" class="col-xs-12">¿Que es conexo?</a>
+                                <a href="#" class="col-xs-12">Alcaldía</a>
+                                <a href="#" class="col-xs-12">Categorias</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <a href="#" class="col-xs-12"><b>Músicos</b></a>
+                                <a href="#" class="col-xs-12">Bajistas</a>
+                                <a href="#" class="col-xs-12">Guitarristas</a>
+                                <a href="#" class="col-xs-12">Percusionistas</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <a href="#" class="col-xs-12"><b>Producción</b></a>
+                                <a href="#" class="col-xs-12">Fotografía</a>
+                                <a href="#" class="col-xs-12">Video</a>
+                                <a href="#" class="col-xs-12">Audio</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <a href="#" class="col-xs-12"><b>Peformances</b></a>
+                                <a href="#" class="col-xs-12">Bailarines</a>
+                                <a href="#" class="col-xs-12">Teatro</a>
+                                <a href="#" class="col-xs-12">Cantantes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group input-search">
+                                <input type="text" class="form-control input-home-search" placeholder="Ej: Fotografo, Pintor, Bailarín..." >
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-search"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row margin-top-network">
+                        <div class="col-xs-2" ng-repeat="network in networks">
+                            <a class="img-network" ng-href="{{network.href}}"><img ng-src="{{network.img}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row footer-2">
+            <div class="container">
+                <div class="col-xs-12">
+                    <span>Copyright, todos los derechos reservados MinTic Colombia, 2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

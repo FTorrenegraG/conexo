@@ -10,7 +10,20 @@ angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$routeProvider','$locationProvider',function ($routeProvider, $locationProvider) {
 	$routeProvider
     .when("/home", {
-        templateUrl : "partial-views/home.html"
+        templateUrl : "partial-views/home.html",
+        controller: "homeController as homeCtrl"
     })
     .otherwise({ redirectTo: '/home' })    
 }])
+.directive("scroll", function ($window) {
+    return function(scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+             if (this.pageYOffset >= attrs.scroll) {
+                 scope.boolChangeClass = true;
+             } else {
+                 scope.boolChangeClass = false;
+             }
+            scope.$apply();
+        });
+    };
+});

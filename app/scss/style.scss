@@ -29,42 +29,65 @@ nav{
 	}
 }
 .navbar-transparent {
-   background-color: transparent;
    background: transparent;
    border-color: transparent;
-   .open { 
+    .nav{
+		height: $height_nav;
+	}
+	.login{
+		li:first-child{
+			&:after{
+				    content: " ";
+				    color: white;
+				    position: absolute;
+				    right: 0;
+				    top: 15px;
+				    height: 20px;
+				    border: 0.5px solid white;
+			}
+		}
+	}
+    .open { 
 	   background-color: transparent;
 	   background: transparent;
 	   border-color: transparent;
 	}
-}
-.container-custom-1{
-	width: 90%;
-	height: $height_nav;
-	margin: 0 auto;
-}
-.nav{
-	height: $height_nav;
-}
-.login{
-	li:first-child{
-		&:after{
-			    content: " ";
-			    color: white;
-			    position: absolute;
-			    right: 0;
-			    top: 15px;
-			    height: 20px;
-			    border: 0.5px solid white;
+	.background-nav{
+		transition: all 0.2s linear;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		opacity: 1;
+		background: $gradient_home_1; /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, $gradient_home_1, $gradient_home_2); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, $gradient_home_1, $gradient_home_2); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, $gradient_home_1, $gradient_home_2); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, $gradient_home_1, $gradient_home_2); /* Standard syntax */
+		&.ng-hide{
+			opacity: 0;
 		}
 	}
+	.navbar-brand{
+		margin-top: 15px;
+		img{
+			border-radius: 50%;
+		}
+	}
+	.navbar-collapse{
+		text-align: center;
+	}
+	.container-custom-1{
+		width: 90%;
+		height: $height_nav;
+		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+	}
 }
-.navbar-brand{
-	margin-top: 15px;
-}
-.navbar-collapse{
-	text-align: center;
-}
+
+
+
 .navbar-center{
 	width: 90%;
 	position: absolute;
@@ -80,7 +103,7 @@ nav{
 }
 .home-div{
 	height: 100vh;
-	position: absolute;
+	position: relative;
 	background: $gradient_home_1; /* For browsers that do not support gradients */
 	background: -webkit-linear-gradient(left top, $gradient_home_1, $gradient_home_2); /* For Safari 5.1 to 6.0 */
 	background: -o-linear-gradient(bottom right, $gradient_home_1, $gradient_home_2); /* For Opera 11.1 to 12.0 */
@@ -89,7 +112,57 @@ nav{
 	color: white;
 	display: flex;
 	align-items: center;
+	.img-overlay{
+		z-index: 1;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		margin-left: -15px;
+		opacity: 0.3;
+		background-color: black;
+	}
+	.img-home-background{
+		transition: all 1s linear;
+		z-index: 0;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 50% 50%;
+		margin-left: -15px;
+		opacity: 0.5;
+		&.ng-hide{
+			opacity: 0;
+		}
+	}
+	.span-info-home{
+		transition: all 1s linear;
+		z-index: 100;
+		position: absolute;
+		text-align: center;
+		bottom: 30px;
+		left: 5%;
+		font-size: (20 / 16) * 1em;
+		&.ng-hide{
+			opacity: 0;
+		}
+		.info-into-span{
+			margin: 0 15px;
+		}
+		.btn-view-profile{
+			background-color: $color_button_search_up;
+			border-color: $color_button_search_up;
+			color: white;
+			// transition: all 0.05s linear;
+			&:hover{
+				background-color: $color_a;
+				border-color: $color_a;
+			}
+		}
+	}
 	.from-group-search-home{
+		position: relative;
+		z-index: 100;
 		margin: 0 auto;
 		width: 60%;
 		.advance-search-span{
@@ -99,13 +172,17 @@ nav{
 				font-weight: bold;
 				color: $color_a;
 				margin-top: 120px;
-				font-size: 20px;
+				font-size: (20 / 16) * 1em;
+				&:hover{
+					text-decoration: none;
+					color: $color_button_search_up;
+				}
 			}
 		}
 		label{
 			font-family: $font-special, sans-serif;
 			text-align: left;
-			font-size: 80px;
+			font-size: (80 / 16) * 1em;
 			line-height: 75px;
 			font-style: italic;
 			// margin-top: 10%;
@@ -116,14 +193,14 @@ nav{
 			input{
 				height: 80px;
 				color: black;
-				font-size: 20px;
+				font-size: (20 / 16) * 1em;
 				font-style: italic;
 				padding: 10px 20px 10px 20px;
 				border-radius: 10px 0 0 10px;
 			}
 			.input-group-addon{
 				width: 80px;
-				font-size: 35px;
+				font-size: (35 / 16) * 1em;
 				padding: 0 0 7px 15px;
 				border-radius: 0 10px 10px 0;
 				background-color: $color_button_search_back;
@@ -135,10 +212,175 @@ nav{
 					background-color: $color_button_search_up;
 					border-color: $color_button_search_up;
 					border-radius: 0 10px 10px 0;
+					transition: all 0.05s linear;
 					width: 80px;
 					top: -5px;
 					right: -5px;
 					height: 80px;
+				}
+				&:hover{
+					&:before{
+						background-color: $color_a;
+						border-color: $color_a;
+					}
+				}
+			}
+		}
+	}
+}
+.categories-home{
+	.margin-top{
+		margin-top: 50px;
+	}
+	.box-category{
+		padding: 0;
+		height: 350px;
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 50% 50%;
+		}
+		.category-overlay{
+			transition: all 0.3s linear;
+			z-index: 1;
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+			background-color: black;
+			&.over-t{
+				opacity: 0.5
+			}
+			span{
+				opacity: 1;
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+				font-size: 20px;
+			}
+		}
+		.btn-view-category{
+			position: absolute;
+			z-index: 1001;
+			bottom: 20px;
+			left: 20px;
+			font-style: italic;
+			font-weight: bold;
+			padding: 0px 15px;
+			background-color: $color_button_search_up;
+			border-color: $color_button_search_up;
+			color: white;
+			// transition: all 0.05s linear;
+			&:hover{
+				background-color: $color_a;
+				border-color: $color_a;
+			}
+		}
+	}
+}
+.info-home{
+	margin-bottom: 100px;
+	.margin-top{
+		margin-top: 100px;
+	}
+	img{
+		width: 100%;
+		object-fit: cover;
+		object-position: 50% 50%;
+	}
+	p{
+		line-height: 35px;
+		text-align: justify;
+	}
+	.btn-info-home {
+		margin-top: 15px;
+		color: white;
+		width: 150px;
+		height: 50px;
+		font-weight: bold;
+		font-style: italic;
+		&.btn-1{ margin-right: 10px; background-color: $color_button_search_up; border-color: $color_button_search_up}
+		&.btn-2{ background-color: $color_button_search_back; border-color: $color_button_search_back}
+		
+	}
+}
+.footer{
+	color: white;
+	margin-right: 15px;
+	a{
+		color: white;
+		margin: 5px 0;
+		&:hover{
+			color: $color_button_search_up;
+			text-decoration: none;
+		}
+	}
+	.margin-top{
+		margin-top: 50px;
+	}
+	.footer-1{
+		background-color: rgb(12,35,57);
+		height: 250px;
+		.margin-top-network{
+			margin-top: 20px;
+		}
+		.img-network{
+			img{
+				border-radius: 50%;
+				width: 100%;
+				object-fit: cover;
+				object-position: 50% 50%;
+			}
+		}
+	}
+	.footer-2{
+		background-color: rgb(9,28,47);
+		height: 100px;
+		display: flex;
+		align-items: center;
+		text-align: center;
+	}
+	.input-search{
+		margin: 15px 0;
+		width: 100%;
+		input{
+			height: 40px;
+			color: black;
+			font-size: (16 / 16) * 1em;
+			font-style: italic;
+			padding: 10px 20px 10px 20px;
+			border-radius: 5px 0 0 5px;
+		}
+		.input-group-addon{
+			width: 40px;
+			font-size: (18 / 16) * 1em;
+			padding: 0 0 7px 7px;
+			border-radius: 0 10px 10px 0;
+			background-color: $color_button_search_back;
+			border-color: $color_button_search_back;
+			color: white;
+			&:before{
+				content: "";
+				position: absolute;
+				background-color: $color_button_search_up;
+				border-color: $color_button_search_up;
+				border-radius: 0 5px 5px 0;
+				transition: all 0.05s linear;
+				width: 40px;
+				top: -3px;
+				right: -3px;
+				height: 40px;
+			}
+			&:hover{
+				&:before{
+					background-color: $color_a;
+					border-color: $color_a;
 				}
 			}
 		}
