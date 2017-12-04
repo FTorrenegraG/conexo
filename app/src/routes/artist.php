@@ -132,7 +132,7 @@ $app->post('/artist/add', function(Request $request, Response $response){
 	$estado = 1;
 
 
-	$sql = "INSERT INTO artists (id_user, nombre_artista, foto_perfil, foto_portada, categoria, subcategoria, facebook, instagram, youtube, video, perfil, valor, descuento, descservicio, estado) VALUES (:id_user,:categoria,:nombre_artista, :foto_perfil, :foto_portada,:subcategoria, :facebook, :instagram, :youtube, :video, :perfil, :valor, :descuento, :descservicio, :estado)";
+	$sql = "INSERT INTO artists (id_user, nombre_artista, foto_perfil, foto_portada, categoria, subcategoria, facebook, instagram, youtube, video, perfil, valor, descuento, descservicio, estado) VALUES (:id_user,:nombre_artista, :foto_perfil, :foto_portada, :categoria,:subcategoria, :facebook, :instagram, :youtube, :video, :perfil, :valor, :descuento, :descservicio, :estado)";
 
 	try{
 		// Get db Obj
