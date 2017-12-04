@@ -507,3 +507,234 @@
 
   * **Code:** GENERAL <br />
     **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+**Calificador - Ver Todos**
+----
+  Ver Todos los Calificadores.
+
+* **URL**
+
+  api/calificadores
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"},{...},{...}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Ver Un Calificador**
+----
+  Ver un  Calificador.
+
+* **URL**
+
+  api/calificador/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `id=id Calificador`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+**Calificador - Ver Un Calificador por id de usuario**
+----
+  Ver un  Calificadors.
+
+* **URL**
+
+  api/calificador/user/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `id= id usuario`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+**Calificador - Calificador logueado**
+----
+  Ver Calificador/usuario actualmente logueado en el server.
+
+* **URL**
+
+  api/calificador/user/logged
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+   None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Nuevo Calificador**
+----
+  Registrar nuevo Calificador.
+
+* **URL**
+
+  api/calificador/add
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+   `{
+      id_user : 3,
+      tipo_cal : "empresa",
+      foto_perfil : "URL_TO_PATH",
+      foto_portada : "URL_TO_PATH_port",
+      preferencias : "[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"calificador Added!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Editar**
+----
+  Editar Calificador existente.
+
+* **URL**
+
+  /calificador/update/:id
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   `id = id Calificador`
+
+* **Data Params**
+
+   `{
+      foto_perfil : "URL_TO_PATH",
+      foto_portada : "URL_TO_PATH_port",
+      preferencias : "[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"
+    }`
+
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"calificador Updated!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Eliminar**
+----
+  Eliminar Calificador.
+
+* **URL**
+
+  api/calificador/delete/:id
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   `id = id Calificador`
+
+* **Data Params**
+
+   None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"calificador Deleted!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`

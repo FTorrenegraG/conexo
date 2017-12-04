@@ -130,14 +130,12 @@ $app->post('/calificador/add', function(Request $request, Response $response){
 // Update Single calificador
 $app->put('/calificador/update/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
-	$tipo_cal = $request->getParam('tipo_cal');
 	$foto_perfil = $request->getParam('foto_perfil');
 	$foto_portada = $request->getParam('foto_portada');
 	$preferencias = $request->getParam('preferencias');
 
 	$update_string = '';
 
-	if ($tipo_cal) $update_string = $update_string.'tipo_cal = :tipo_cal,';
 	if ($foto_perfil) $update_string = $update_string.'foto_perfil = :foto_perfil,';
 	if ($foto_portada) $update_string = $update_string.'foto_portada = :foto_portada,';
 	if ($preferencias) $update_string = $update_string.'preferencias = :preferencias,';
@@ -154,7 +152,6 @@ $app->put('/calificador/update/{id}', function(Request $request, Response $respo
 
 		$stmt = $db->prepare($sql);
 
-		if ($tipo_cal) $stmt->bindParam(':tipo_cal',$tipo_cal);
 		if ($foto_perfil) $stmt->bindParam(':foto_perfil',$foto_perfil);
 		if ($foto_portada) $stmt->bindParam(':foto_portada',$foto_portada);
 		if ($preferencias) $stmt->bindParam(':preferencias',$preferencias);
