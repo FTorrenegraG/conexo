@@ -44,6 +44,27 @@ $app->get('/artist/{id}', function(Request $request, Response $response){
 	}
 });
 
+// Search artists
+$app->get('/artist/search/{search}', function(Request $request, Response $response){
+	$search = urldecode($request->getAttribute('search'));
+	$sql = "SELECT * FROM artists WHERE Concat(nombre_artista, '', categoria, '', subcategoria, '', perfil, '', valor, '', descservicio) like '%$search%'";
+
+	try{
+		// Get db Obj
+		$db = new db();
+		// Connect
+		$db = $db->connect();
+
+		$stmt = $db->query($sql);
+		$artist = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+
+		echo json_encode($artist); 
+	}catch(PDOException $e){
+		echo '{"error":{"text":'.$e->getMessage().'}}';
+	}
+});
+
 // Get Single artists logged
 $app->get('/artist/user/logged', function(Request $request, Response $response){
 	if (isset($_SESSION["userInfo"])) {
