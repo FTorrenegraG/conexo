@@ -4,7 +4,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 // Get All artists
-$app->get('/api/artists', function(Request $request, Response $response){
+$app->get('/artists', function(Request $request, Response $response){
 	$sql = "SELECT * FROM artists";
 
 	try{
@@ -24,7 +24,7 @@ $app->get('/api/artists', function(Request $request, Response $response){
 });
 
 // Get Single artists
-$app->get('/api/artist/{id}', function(Request $request, Response $response){
+$app->get('/artist/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
 	$sql = "SELECT * FROM artists WHERE id = $id";
 
@@ -45,7 +45,7 @@ $app->get('/api/artist/{id}', function(Request $request, Response $response){
 });
 
 // Get Single artists logged
-$app->get('/api/artist/user/logged', function(Request $request, Response $response){
+$app->get('/artist/user/logged', function(Request $request, Response $response){
 	if (isset($_SESSION["userInfo"])) {
 		$json = json_decode($_SESSION["userInfo"]);
 		$id = $json[0]->id;
@@ -72,7 +72,7 @@ $app->get('/api/artist/user/logged', function(Request $request, Response $respon
 });
 
 // Get Single artists-user
-$app->get('/api/artist/user/{id}', function(Request $request, Response $response){
+$app->get('/artist/user/{id}', function(Request $request, Response $response){
 	$id_user = $request->getAttribute('id');
 	$sql = "SELECT * FROM artists WHERE id_user = $id_user";
 
@@ -93,7 +93,7 @@ $app->get('/api/artist/user/{id}', function(Request $request, Response $response
 });
 
 // Add Single artists
-$app->post('/api/artist/add', function(Request $request, Response $response){
+$app->post('/artist/add', function(Request $request, Response $response){
 	$id_user = $request->getParam('id_user');
 	$nombre_artista = $request->getParam('nombre_artista');
 	$foto_perfil = $request->getParam('foto_perfil');
@@ -139,14 +139,14 @@ $app->post('/api/artist/add', function(Request $request, Response $response){
 		$stmt->execute();
 		$db = null;
 
-		echo '{"notice":{"text":"Costumer Added!"}}';
+		echo '{"notice":{"text":"Artist Added!"}, "status" : 200}';
 	}catch(PDOException $e){
 		echo '{"error":{"text":'.$e->getMessage().'}}';
 	}
 });
 
 // Update Single artists
-$app->put('/api/artist/update/{id}', function(Request $request, Response $response){
+$app->put('/artist/update/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
 	$nombre_artista = $request->getParam('nombre_artista');
 	$foto_perfil = $request->getParam('foto_perfil');
@@ -207,14 +207,14 @@ $app->put('/api/artist/update/{id}', function(Request $request, Response $respon
 		$stmt->execute();
 		$db = null;
 
-		echo '{"notice":{"text":"Costumer Updated!"}}';
+		echo '{"notice":{"text":"Artist Updated!"}, "status" : 200}';
 	}catch(PDOException $e){
 		echo '{"error":{"text":'.$e->getMessage().'}}';
 	}
 });
 
 // Delete artist
-$app->delete('/api/artist/delete/{id}', function(Request $request, Response $response){
+$app->delete('/artist/delete/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
 	$sql = "DELETE FROM artists where id = $id";
 
@@ -228,7 +228,7 @@ $app->delete('/api/artist/delete/{id}', function(Request $request, Response $res
 		$stmt->execute();
 		$db = null;
 
-		echo '{"notice":{"text":"Costumer Deleted!"}}';
+		echo '{"notice":{"text":"Artist Deleted!"}, "status" : 200}';
 	}catch(PDOException $e){
 		echo '{"error":{"text":'.$e->getMessage().'}}';
 	}

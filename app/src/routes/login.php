@@ -4,7 +4,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 // Login User
-$app->post('/api/login', function(Request $request, Response $response){
+$app->post('/login', function(Request $request, Response $response){
 	$email = $request->getParam('email');
 	$pass = md5($request->getParam('pass'));
 
@@ -34,7 +34,7 @@ $app->post('/api/login', function(Request $request, Response $response){
 });
 
 // Login User
-$app->post('/api/logout', function(Request $request, Response $response){
+$app->post('/logout', function(Request $request, Response $response){
 	// remove all session variables
 	session_unset(); 
 	// destroy the session 

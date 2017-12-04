@@ -4,7 +4,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 // Get All users
-$app->get('/api/users', function(Request $request, Response $response){
+$app->get('/users', function(Request $request, Response $response){
 	$sql = "SELECT * FROM users";
 
 	try{
@@ -24,7 +24,7 @@ $app->get('/api/users', function(Request $request, Response $response){
 });
 
 // Get Single user Info
-$app->get('/api/user', function(Request $request, Response $response){
+$app->get('/user', function(Request $request, Response $response){
 	if (isset($_SESSION["user"])) {
 		# code...
 		$email = $_SESSION["user"];
@@ -50,7 +50,7 @@ $app->get('/api/user', function(Request $request, Response $response){
 
 
 // Insert User
-$app->post('/api/user/new', function(Request $request, Response $response){
+$app->post('/user/new', function(Request $request, Response $response){
 	$cc_nit = $request->getParam('cc_nit');
 	$first_name = $request->getParam('first_name');
 	$last_name = $request->getParam('last_name');
@@ -110,7 +110,7 @@ $app->post('/api/user/new', function(Request $request, Response $response){
 });
 
 // Update Single user
-$app->put('/api/user/update/{email}', function(Request $request, Response $response){
+$app->put('/user/update/{email}', function(Request $request, Response $response){
 	$email = $request->getAttribute('email');
 	$cc_nit = $request->getParam('cc_nit');
 	$first_name = $request->getParam('first_name');
@@ -160,9 +160,9 @@ $app->put('/api/user/update/{email}', function(Request $request, Response $respo
 });
 
 // Delete user
-$app->delete('/api/user/delete/{id}', function(Request $request, Response $response){
-	$id = $request->getAttribute('id');
-	$sql = "DELETE FROM users where id = $id";
+$app->delete('/user/delete/{email}', function(Request $request, Response $response){
+	$email = $request->getAttribute('email');
+	$sql = "DELETE FROM users where email = $email";
 
 	try{
 		// Get db Obj
