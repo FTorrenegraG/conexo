@@ -1,5 +1,5 @@
 angular.module("conexo")
-.controller("homeController",function ($scope,$timeout) {
+.controller("homeController",function ($scope,$timeout,DataBaseService) {
 	$scope.slides = [{
 		img: "https://colombiareports.com/wp-content/uploads/2017/02/car1.x79936.jpg",
 		info: {name_a: "slide 1", ocupation: "ocupación 1"}
@@ -36,6 +36,7 @@ angular.module("conexo")
 		{img: "https://marketingparafotografos.es/wp-content/uploads/2014/10/LEICA-2244x897.jpg", name: "Fotografos", description: " descripción Fotografos"},
 		{img: "http://via.placeholder.com/350x350", name: "Cualquiera", description: " descripción cualqueira"}]
 	$scope.slide_i = 0
+	$scope.results = []
 	$scope.changeSlide = function () {
 		$timeout(function () {
 			$scope.slide_i += 1
@@ -46,4 +47,13 @@ angular.module("conexo")
 		},4000)
 	}
 	$scope.changeSlide()
+	$scope.searchDB = function (text) {
+		if (text != ""){
+			DataBaseService.getDB("/artists").success(function (data) {
+				$scope.results = data
+			})
+		}else{
+			$scope.results = []
+		}
+	}
 })

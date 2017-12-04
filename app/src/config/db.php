@@ -2,7 +2,8 @@
 
 class db{
 	// Properties
-	private $dbhost = 'localhost';
+	// private $dbhost = 'localhost';
+	private $dbhost = '127.0.0.1';
 	private $dbuser = 'root';
 	private $dbpass = '';
 	private $dbname = 'conexo';

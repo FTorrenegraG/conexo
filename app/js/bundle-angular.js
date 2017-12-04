@@ -28,7 +28,107 @@ angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
     };
 });
 angular.module("conexo")
-.controller("homeController",function ($scope,$timeout) {
+.factory('DataBaseService', ['$http','Session', function AuthorizationFactory($http,Session) {
+	var URL_Api = 'http://localhost:9000/api'
+	return {
+		postDB : function (url,data) {
+			return $http({
+				method: 'POST',
+                url: URL_Api+url,
+                data: data
+			})
+		},
+		getDB : function (url) {
+			return $http({
+				method: 'GET',
+                url: URL_Api+url
+			})
+		},
+		putDB : function (url,data) {
+			return $http({
+				method: 'PUT',
+                url: URL_Api+url,
+                data: data
+			})
+		},
+		deleteDB : function (url) {
+			return $http({
+				method: 'Delete',
+                url: URL_Api+url
+			})
+		}
+	}
+}])
+angular.module("conexo")
+.factory('Session', function SessionFactory($http, $cookieStore, $localStorage,$window) {
+  return {
+    login: function(data){
+      return $http({method: 'POST', url: URL_Api + '/sections', data: data, headers: {'Proyecto': "2"}})
+    },
+    signUp: function(data){
+      return $http({method: 'POST', url: URL_Api + '/users', data: data})
+    },
+    isAuth: function(){
+      try{
+        return $cookieStore.get('token') !== undefined ;
+      }catch(err){
+        this.logout();
+        return false;
+      }
+    },
+    setToken: function(token){
+    	$cookieStore.put('token', undefined);
+	    $localStorage.user = undefined;
+        $cookieStore.put('token', token);
+    },
+    logout: function(){
+    	$http({
+    		method: 'DELETE',
+    		url: URL_Api + '/sections',
+    		headers: {
+				'Authorization': $cookieStore.get('token')
+			}
+    	}).success(function(data){
+    		$cookieStore.put('token', undefined);
+		    $localStorage.user = undefined;
+		    $window.location.href = "/cdc-v2/";
+            $window.location.reload();
+    	}).error(function(error){
+    		$cookieStore.put('token', undefined);
+            $localStorage.user = undefined;
+            $window.location.href = "/cdc-v2/";
+            $window.location.reload();
+    	})
+    },
+    deleteAll: function () {
+        $cookieStore.put('token', undefined);
+        $localStorage.user = undefined;
+    },
+    setUser: function(user){
+    	$localStorage.user=user
+    },
+    getUser: function(){
+    	return $localStorage.user
+    },
+    getSession: function(){
+    	return {
+    		Authorization: $cookieStore.get('token')
+    	}
+    },
+    getSeccionInfo: function(){
+        return $http({
+            method: 'GET',
+            url: URL_Api + '/sections',
+            headers: {
+                'Authorization': $cookieStore.get('token')
+            }
+        });
+    }
+  }
+})
+
+angular.module("conexo")
+.controller("homeController",function ($scope,$timeout,DataBaseService) {
 	$scope.slides = [{
 		img: "https://colombiareports.com/wp-content/uploads/2017/02/car1.x79936.jpg",
 		info: {name_a: "slide 1", ocupation: "ocupación 1"}
@@ -65,6 +165,7 @@ angular.module("conexo")
 		{img: "https://marketingparafotografos.es/wp-content/uploads/2014/10/LEICA-2244x897.jpg", name: "Fotografos", description: " descripción Fotografos"},
 		{img: "http://via.placeholder.com/350x350", name: "Cualquiera", description: " descripción cualqueira"}]
 	$scope.slide_i = 0
+	$scope.results = []
 	$scope.changeSlide = function () {
 		$timeout(function () {
 			$scope.slide_i += 1
@@ -75,6 +176,15 @@ angular.module("conexo")
 		},4000)
 	}
 	$scope.changeSlide()
+	$scope.searchDB = function (text) {
+		if (text != ""){
+			DataBaseService.getDB("/artists").success(function (data) {
+				$scope.results = data
+			})
+		}else{
+			$scope.results = []
+		}
+	}
 })
 angular.module("conexo")
 .controller("indexController",function ($scope,$timeout) {

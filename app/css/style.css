@@ -8323,6 +8323,55 @@ nav a {
         .home-div .from-group-search-home .input-search .input-group-addon:hover:before {
           background-color: #8D2F7A;
           border-color: #8D2F7A; }
+  .home-div.home-div-min {
+    height: 200px;
+    align-items: flex-end; }
+    .home-div.home-div-min .from-group-search-home {
+      width: 60%;
+      margin-bottom: 15px; }
+      .home-div.home-div-min .from-group-search-home .advance-search-span {
+        margin-top: 15px;
+        display: block; }
+        .home-div.home-div-min .from-group-search-home .advance-search-span a {
+          font-weight: bold;
+          color: #8D2F7A;
+          margin-top: 120px;
+          font-size: 1.25em; }
+          .home-div.home-div-min .from-group-search-home .advance-search-span a:hover {
+            text-decoration: none;
+            color: #D72E92; }
+      .home-div.home-div-min .from-group-search-home .input-search {
+        margin: 15px 0;
+        width: 100%; }
+        .home-div.home-div-min .from-group-search-home .input-search input {
+          height: 60px;
+          color: black;
+          font-size: 1.125em;
+          font-style: italic;
+          padding: 10px 20px 10px 20px;
+          border-radius: 10px 0 0 10px; }
+        .home-div.home-div-min .from-group-search-home .input-search .input-group-addon {
+          width: 60px;
+          font-size: 1.875em;
+          padding: 0 0 7px 15px;
+          border-radius: 0 10px 10px 0;
+          background-color: #4CBFAE;
+          border-color: #4CBFAE;
+          color: white; }
+          .home-div.home-div-min .from-group-search-home .input-search .input-group-addon:before {
+            content: "";
+            position: absolute;
+            background-color: #D72E92;
+            border-color: #D72E92;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.05s linear;
+            width: 60px;
+            top: -5px;
+            right: -5px;
+            height: 60px; }
+          .home-div.home-div-min .from-group-search-home .input-search .input-group-addon:hover:before {
+            background-color: #8D2F7A;
+            border-color: #8D2F7A; }
 
 .categories-home .margin-top {
   margin-top: 50px; }
