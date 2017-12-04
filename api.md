@@ -291,6 +291,38 @@
 
 
 
+**Artista - Buscar**
+----
+  Buscar artistas.
+
+* **URL**
+
+  /artist/search/:search
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `search = string para buscar URL encoded`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null},{...},{...}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
 **Artista - Ver Un Artista por id de usuario**
 ----
   Ver un  artistas.
