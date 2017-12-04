@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-12-2017 a las 05:13:53
+-- Tiempo de generación: 04-12-2017 a las 22:51:10
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -80,8 +80,17 @@ CREATE TABLE `calificador` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tipo_cal` varchar(255) COLLATE utf32_spanish2_ci NOT NULL,
+  `foto_perfil` text COLLATE utf32_spanish2_ci NOT NULL,
+  `foto_portada` text COLLATE utf32_spanish2_ci NOT NULL,
   `preferencias` text COLLATE utf32_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `calificador`
+--
+
+INSERT INTO `calificador` (`id`, `id_user`, `tipo_cal`, `foto_perfil`, `foto_portada`, `preferencias`) VALUES
+(1, 3, 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\',\'bachata\']}]');
 
 -- --------------------------------------------------------
 
@@ -180,7 +189,7 @@ ALTER TABLE `artists`
 -- AUTO_INCREMENT de la tabla `calificador`
 --
 ALTER TABLE `calificador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
