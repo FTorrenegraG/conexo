@@ -121,7 +121,20 @@ $app->post('/calificador/add', function(Request $request, Response $response){
 		$stmt->execute();
 		$db = null;
 
-		echo '{"notice":{"text":"Calificador Added!"}, "status" : 200}';
+		$sql = "SELECT * FROM calificador WHERE id_user = $id_user";
+
+		// Get db Obj
+		$db = new db();
+		// Connect
+		$db = $db->connect();
+
+		$stmt = $db->query($sql);
+		$artist = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+
+		$calificadorInfo = json_encode($artist);
+
+		echo '{"notice":{"text":"Calificador Added!"}, "status" : 200, "calificadorInfo" : '.$calificadorInfo.'}';
 	}catch(PDOException $e){
 		echo '{"error":{"text":'.$e->getMessage().'}}';
 	}
