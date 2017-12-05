@@ -93,7 +93,7 @@ $app->post('/user/new', function(Request $request, Response $response){
 				$stmt->execute();
 				$db = null;
 
-				$sql = "SELECT first_name,last_name,email,cc_nit,type FROM users WHERE email = '$email'";
+				$sql = "SELECT id,first_name,last_name,email,cc_nit,type FROM users WHERE email = '$email'";
 
 				// Get db Obj
 				$db = new db();
