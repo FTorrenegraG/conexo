@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-12-2017 a las 08:11:10
+-- Tiempo de generación: 05-12-2017 a las 08:20:28
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -34,8 +34,8 @@ CREATE TABLE `artists` (
   `nombre_artista` varchar(255) NOT NULL,
   `foto_perfil` text NOT NULL,
   `foto_portada` text NOT NULL,
-  `categoria` int(11) NOT NULL,
-  `subcategoria` int(11) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `subcategoria` varchar(255) NOT NULL,
   `facebook` text NOT NULL,
   `instagram` text NOT NULL,
   `youtube` text NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE `artists` (
 --
 
 INSERT INTO `artists` (`id`, `id_user`, `nombre_artista`, `foto_perfil`, `foto_portada`, `categoria`, `subcategoria`, `facebook`, `instagram`, `youtube`, `video`, `perfil`, `valor`, `descuento`, `descservicio`, `estado`, `vencimiento`) VALUES
-(1, 4, 'Rancid 2', 'URL_TO_PATH', 'URL_TO_PATH_port', 0, 0, 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
+(1, 4, 'Rancid 2', 'URL_TO_PATH', 'URL_TO_PATH_port', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
 
 -- --------------------------------------------------------
 

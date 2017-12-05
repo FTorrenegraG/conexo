@@ -347,7 +347,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null},{...},{...}]`
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"Música","subcategoria":"Punk","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null},{...},{...}]`
  
 * **Error Response:**
 
@@ -379,7 +379,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"Música","subcategoria":"Punk","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
  
 * **Error Response:**
 
@@ -411,7 +411,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"Música","subcategoria":"Punk","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
  
 * **Error Response:**
 
@@ -442,8 +442,8 @@
       nombre_artista : "Rancid",
       foto_perfil : "URL_TO_PATH",
       foto_portada : "URL_TO_PATH_port",
-      categoria : "rock",
-      subcategoria : "punk",
+      categoria : "Música",
+      subcategoria : "Punk",
       facebook : "rancid",
       instagram : "rancid",
       youtube : "UCFSjnN55tV-mecyG0mYvhdQ",
@@ -487,8 +487,8 @@
       nombre_artista : "Rancid",
       foto_perfil : "URL_TO_PATH",
       foto_portada : "URL_TO_PATH_port",
-      categoria : "rock",
-      subcategoria : "punk",
+      categoria : "Música",
+      subcategoria : "Punk",
       facebook : "rancid",
       instagram : "rancid",
       youtube : "UCFSjnN55tV-mecyG0mYvhdQ",
