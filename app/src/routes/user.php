@@ -93,7 +93,20 @@ $app->post('/user/new', function(Request $request, Response $response){
 				$stmt->execute();
 				$db = null;
 
-				echo '{"notice":{"text":"User Added!"}, "status" : 200}';
+				$sql = "SELECT first_name,last_name,email,cc_nit,type FROM users WHERE email = '$email'";
+
+				// Get db Obj
+				$db = new db();
+				// Connect
+				$db = $db->connect();
+
+				$stmt = $db->query($sql);
+				$user = $stmt->fetchAll(PDO::FETCH_OBJ);
+				$db = null;
+
+				$userInfo = json_encode($user); 
+
+				echo '{"notice":{"text":"User Added!"}, "status" : 200, "userInfo":'.$userInfo.'}';
 			}catch(PDOException $e){
 				echo '{"error2":{"text":'.$e->getMessage().'}}';
 			}
