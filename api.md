@@ -291,6 +291,39 @@
 
 
 
+**Artista - Ver Score**
+----
+  Ver score de un  artista.
+
+* **URL**
+
+  api/artist/score/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `id=id artista`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"score":3.57142857, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+
 **Artista - Buscar**
 ----
   Buscar artistas.
@@ -733,6 +766,45 @@
 
   * **Code:** 200 <br />
     **Content:** `{"notice":{"text":"calificador Deleted!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificar!**
+----
+  Calificar un artista.
+
+* **URL**
+
+  /calificar/:id_artista/:id_calificador
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   `id_artista = id Artista`
+   `id_calificador = id Calificador`
+
+* **Data Params**
+
+   `{
+      originalidad : 5,
+      contenido : 5,
+      propuesta : 5,
+      imagen : 5,
+      calidad : 5,
+      comentario : "El artista se ve muy bien pero le falta originalidad"
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"Calification Added!"}, "status" : 200,"score":3.75000000}`
  
 * **Error Response:**
 
