@@ -1,9 +1,42 @@
+<nav class="navbar navbar-default navbar-transparent navbar-fixed-top">
+  <div scroll="100" class="background-nav" ng-show="boolChangeClass">
+  </div>
+  <div class="container-custom-1">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="img/brandname.png">
+        </a> 
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center center_v">
+        <li><a href="#">¿Que es conexo?</a></li>
+        <li><a href="#">Alcaldía</a></li>
+        <li><a href="#">Categorías</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right center_v login" ng-hide="current_user.user.id">
+        <li><a href="#">Inscríbete</a></li>
+        <li><a class="manito" data-toggle="modal" data-target="#modalLogin">Ingresar</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
+        <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
+        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <div class="row">
-	<div class="col-xs-12 home-div">
+	<div class="col-xs-12 home-div" ng-class="{'home-div-min' : results.length > 0}">
 		<div class="from-group from-group-search-home">
-			<label for="exampleInputEmail1">BUSCA <br>UN ARTISTA</label>
+			<label ng-hide="results.length > 0" for="exampleInputEmail1">BUSCA <br>UN ARTISTA</label>
 			<div class="input-group input-search">
-			    <input type="text" class="form-control input-home-search" placeholder="Ej: Fotografo, Pintor, Bailarín..." >
+			    <input type="text" class="form-control input-home-search" ng-change="searchDB(search)" ng-model="search" placeholder="Ej: Fotografo, Pintor, Bailarín..." >
 			    <span class="input-group-addon">
 			      <span class="glyphicon glyphicon-search"></span>
 			    </span>
@@ -11,15 +44,15 @@
 	        <span class="advance-search-span"><a href="#">Búsqueda Avanzada</a></span>
 	    </div>
 	    <img class="img-home-background" ng-repeat-start="slide in slides" ng-show="slide_i == $index" ng-src="{{slide.img}}">
-	   	<span class="span-info-home" ng-show="slide_i == $index" ng-repeat-end><b class="info-into-span">{{slide.info.name_a}}</b><i class="info-into-span">{{slide.info.ocupation}}</i><a class="info-into-span btn btn-default btn-xs btn-view-profile" href=""><b>Ver perfil</b></a></span>
+	   	<span class="span-info-home" ng-show="slide_i == $index && results.length == 0" ng-repeat-end><b class="info-into-span">{{slide.info.name_a}}</b><i class="info-into-span">{{slide.info.ocupation}}</i><a class="info-into-span btn btn-default btn-xs btn-view-profile" href=""><b>Ver perfil</b></a></span>
 	   	<div class="img-overlay"></div>
 	</div>
-	<div class="col-xs-12 categories-home">
+	<div class="col-xs-12 categories-home" ng-hide="results.length > 0">
 		<div class="container margin-top">
 			<div class="row">
 				<div class="box-category col-sm-4" ng-repeat="category in categories" >
 					<img ng-src="{{category.img}}">
-					<a class="btn btn-default btn-view-category" href="">{{category.name}}</a>
+					<a class="btn btn-default btn-view-category manito" ng-click="searchCategory(category)">{{category.name}}</a>
 					<div class="category-overlay" ng-mouseenter="category.hovering=true" ng-mouseleave="category.hovering=false" ng-class="{'over-t': category.hovering}">
 						<span>{{category.description}}</span>
 					</div>
@@ -27,7 +60,52 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-12 info-home">
+	<div class="col-xs-12 results" ng-show="results.length > 0">
+		<div class="container margin-top">
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="table margin-top">
+						<thead>
+							<tr>
+								<td colspan="4">
+									<b>{{results.length}} Resultado{{results.length > 1 ? 's' : ''}}</b> <i>{{search}}</i>
+								</td>
+								<td>
+								    <div class="btn-group pull-right">
+									  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    Ordenar por : <span ng-show="t_order == 1">Nombre</span><span ng-show="t_order == 2">Categoria</span><span ng-show="t_order == 3">Clasificación</span> <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu">
+									    <li><a class="manito" ng-click="changeOrder(1)">Nombre</a></li>
+									    <li><a class="manito" ng-click="changeOrder(2)">Categoria</a></li>
+									    <li><a class="manito" ng-click="changeOrder(3)">Clasificación</a></li>
+									  </ul>
+									</div>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="result_i in results | orderBy : propertyName : reverse" class="row row_result">
+								<td class="col-sm-1"><a class="to_profile" ng-href="#/artists/{{result_i.id}}"><img ng-src="{{result_i.foto_perfil}}"></a></td>
+								<td class="col-sm-8"><a class="to_profile" ng-href="#/artists/{{result_i.id}}"><b>{{result_i.nombre_artista}}</b><br><i>{{findCategory(result_i.categoria).name}}</i></a></td>
+								<td class="col-sm-1 "><span class="clasificacion">{{result_i.clasificacion}}</span></td>
+								<td class="col-sm-2 starts">
+									<fieldset class="rating">
+									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 1) ,'fa-star-o': (result_i.clasificacion == 0) ,'fa-star-half-o': (result_i.clasificacion < 1 && result_i.clasificacion >0) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 2) ,'fa-star-o': (result_i.clasificacion <= 1) ,'fa-star-half-o': (result_i.clasificacion < 2 && result_i.clasificacion >1) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 3) ,'fa-star-o': (result_i.clasificacion <= 2) ,'fa-star-half-o': (result_i.clasificacion < 3 && result_i.clasificacion >2) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 4) ,'fa-star-o': (result_i.clasificacion <= 3) ,'fa-star-half-o': (result_i.clasificacion < 4 && result_i.clasificacion >3) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion == 5) ,'fa-star-o': (result_i.clasificacion <= 4) ,'fa-star-half-o': (result_i.clasificacion < 5 && result_i.clasificacion >4) }" aria-hidden="true"></i>
+									</fieldset>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 info-home" ng-hide="results.length > 0">
 		<div class="container margin-top">
 			<div class="col-xs-5">
 				<img src="img/img-home.png">
@@ -39,4 +117,29 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div  class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="modalPeriodLabel">Ingreso a conexo</h4>
+        </div>
+        <form>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="nameuser">Correo electronico</label>
+              <input production-qty type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
+            </div>
+            <div class="form-group">
+              <label for="nameuser">Contraseña</label>
+              <input type="password" class="form-control" id="nameuser" placeholder="Contraseña" ng-model="login.pass" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button ng-click="sent_login()" class="btn btn-default">Enviar Datos</button>
+        </div>
+        </form>
+      </div>
+  </div>
 </div>

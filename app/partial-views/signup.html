@@ -1,0 +1,59 @@
+<nav class="navbar navbar-default navbar-transparent navbar-fixed-top nav-min">
+  <div class="background-nav">
+  </div>
+  <div class="container-custom-1">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="img/brandname.png">
+        </a> 
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center center_v">
+        <li><a href="#">¿Que es conexo?</a></li>
+        <li><a href="#">Alcaldía</a></li>
+        <li><a href="#">Categorías</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right center_v login" ng-hide="current_user.user.id">
+        <li><a href="#">Inscríbete</a></li>
+        <li><a class="manito" data-toggle="modal" data-target="#modalLogin">Ingresar</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
+        <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
+        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div  class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="modalPeriodLabel">Ingreso a conexo</h4>
+        </div>
+        <form>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="nameuser">Correo electronico</label>
+              <input production-qty type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
+            </div>
+            <div class="form-group">
+              <label for="nameuser">Contraseña</label>
+              <input type="password" class="form-control" id="nameuser" placeholder="Contraseña" ng-model="login.pass" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button ng-click="sent_login()" class="btn btn-default">Enviar Datos</button>
+        </div>
+        </form>
+      </div>
+  </div>
+</div>

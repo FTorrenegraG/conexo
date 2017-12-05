@@ -26,7 +26,7 @@ $app->get('/artists', function(Request $request, Response $response){
 // Get Single artists
 $app->get('/artist/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
-	$sql = "SELECT * FROM artists WHERE id = $id";
+	$sql = "SELECT artists.*, round(avg(calificaciones.originalidad+calificaciones.contenido+calificaciones.propuesta+calificaciones.imagen+calificaciones.calidad)/5,1) as clasificacion FROM artists, calificaciones WHERE artists.id = $id and calificaciones.id_artista = artists.id and calificaciones.estado = 1 GROUP BY calificaciones.id_artista";
 
 	try{
 		// Get db Obj
@@ -68,7 +68,7 @@ $app->get('/artist/score/{id}', function(Request $request, Response $response){
 // Search artists
 $app->get('/artist/search/{search}', function(Request $request, Response $response){
 	$search = urldecode($request->getAttribute('search'));
-	$sql = "SELECT * FROM artists WHERE Concat(nombre_artista, '', categoria, '', subcategoria, '', perfil, '', valor, '', descservicio) like '%$search%'";
+	$sql = "SELECT artists.*, round(avg(calificaciones.originalidad+calificaciones.contenido+calificaciones.propuesta+calificaciones.imagen+calificaciones.calidad)/5,1) as clasificacion FROM artists, calificaciones WHERE Concat(artists.nombre_artista, '', artists.categoria, '', artists.subcategoria, '', artists.perfil, '', artists.valor, '', artists.descservicio) like '%$search%' and calificaciones.id_artista = artists.id and calificaciones.estado = 1 GROUP BY calificaciones.id_artista";
 
 	try{
 		// Get db Obj

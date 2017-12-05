@@ -53,8 +53,9 @@ CREATE TABLE `artists` (
 --
 
 INSERT INTO `artists` (`id`, `id_user`, `nombre_artista`, `foto_perfil`, `foto_portada`, `categoria`, `subcategoria`, `facebook`, `instagram`, `youtube`, `video`, `perfil`, `valor`, `descuento`, `descservicio`, `estado`, `vencimiento`) VALUES
-(1, 4, 'Rancid 2', 'URL_TO_PATH', 'URL_TO_PATH_port', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
+(1, 4, 'Rancid 2', 'https://i.ytimg.com/vi/x9B6--fvhXQ/maxresdefault.jpg', 'https://colombiareports.com/wp-content/uploads/2017/02/car3.x79936.jpg', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
 
+  
 -- --------------------------------------------------------
 
 --

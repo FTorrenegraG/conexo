@@ -48,10 +48,9 @@ gulp.task('conca_angular_libs',function () {
 })
 gulp.task('conca_angular_core',function () {
   return gulp.src([
+      'app/js/angular_core/*.js',
       'app/js/angular_core/factories/**/*.js',
-      'app/js/angular_core/services/**/*.js',
       'app/js/angular_core/controllers/**/*.js',
-      'app/js/angular_core/*.js'
     ])
     .pipe(concat('bundle-angular.js'))
     .pipe(gulp.dest('app/js'));
