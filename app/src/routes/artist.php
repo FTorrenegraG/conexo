@@ -44,6 +44,27 @@ $app->get('/artist/{id}', function(Request $request, Response $response){
 	}
 });
 
+// Get Single artists score
+$app->get('/artist/score/{id}', function(Request $request, Response $response){
+	$id = $request->getAttribute('id');
+	$sql = "SELECT id_artista, avg(originalidad+contenido+propuesta+imagen+calidad)/5 as promedio FROM `calificaciones` WHERE id_artista = $id and estado = 1";
+
+	try{
+		$db = new db();
+		$db = $db->connect();
+
+		$stmt = $db->query($sql);
+		$calificaciones = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+
+		$score = $calificaciones[0]->promedio;
+
+		echo '{"score":'.$score.', "status" : 200}';
+	}catch(PDOException $e){
+		echo '{"error":{"text":'.$e->getMessage().'}}';
+	}
+});
+
 // Search artists
 $app->get('/artist/search/{search}', function(Request $request, Response $response){
 	$search = urldecode($request->getAttribute('search'));
@@ -132,7 +153,7 @@ $app->post('/artist/add', function(Request $request, Response $response){
 	$estado = 1;
 
 
-	$sql = "INSERT INTO artists (id_user, nombre_artista, foto_perfil, foto_portada, categoria, subcategoria, facebook, instagram, youtube, video, perfil, valor, descuento, descservicio, estado) VALUES (:id_user,:categoria,:nombre_artista, :foto_perfil, :foto_portada,:subcategoria, :facebook, :instagram, :youtube, :video, :perfil, :valor, :descuento, :descservicio, :estado)";
+	$sql = "INSERT INTO artists (id_user, nombre_artista, foto_perfil, foto_portada, categoria, subcategoria, facebook, instagram, youtube, video, perfil, valor, descuento, descservicio, estado) VALUES (:id_user,:nombre_artista, :foto_perfil, :foto_portada, :categoria,:subcategoria, :facebook, :instagram, :youtube, :video, :perfil, :valor, :descuento, :descservicio, :estado)";
 
 	try{
 		// Get db Obj

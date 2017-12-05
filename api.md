@@ -21,7 +21,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"notice":{"text":"User Logged In!"},"status":200,"user_info":[info]}`
+    **Content:** `{"notice":{"text":"User Logged In!"},"status":200,"user_info":[info],"user_profile":[profile_info]}`
  
 * **Error Response:**
 
@@ -291,6 +291,39 @@
 
 
 
+**Artista - Ver Score**
+----
+  Ver score de un  artista.
+
+* **URL**
+
+  api/artist/score/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `id=id artista`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"score":3.57142857, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+
 **Artista - Buscar**
 ----
   Buscar artistas.
@@ -314,7 +347,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null},{...},{...}]`
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"Música","subcategoria":"Punk","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null},{...},{...}]`
  
 * **Error Response:**
 
@@ -346,7 +379,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"Música","subcategoria":"Punk","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
  
 * **Error Response:**
 
@@ -378,7 +411,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"0","subcategoria":"0","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
+    **Content:** `[{"id":"1","id_user":"4","nombre_artista":"Rancid 2","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","categoria":"Música","subcategoria":"Punk","facebook":"rancid","instagram":"rancid","youtube":"UCFSjnN55tV-mecyG0mYvhdQ","video":"9SCF1zbsBfU","perfil":"Cualquier texto","valor":"50000000","descuento":"10","descservicio":"Incluye<br \/>- 10 temas<br \/>-Equipo tecnico","estado":"1","vencimiento":null}]`
  
 * **Error Response:**
 
@@ -409,8 +442,8 @@
       nombre_artista : "Rancid",
       foto_perfil : "URL_TO_PATH",
       foto_portada : "URL_TO_PATH_port",
-      categoria : "rock",
-      subcategoria : "punk",
+      categoria : "Música",
+      subcategoria : "Punk",
       facebook : "rancid",
       instagram : "rancid",
       youtube : "UCFSjnN55tV-mecyG0mYvhdQ",
@@ -454,8 +487,8 @@
       nombre_artista : "Rancid",
       foto_perfil : "URL_TO_PATH",
       foto_portada : "URL_TO_PATH_port",
-      categoria : "rock",
-      subcategoria : "punk",
+      categoria : "Música",
+      subcategoria : "Punk",
       facebook : "rancid",
       instagram : "rancid",
       youtube : "UCFSjnN55tV-mecyG0mYvhdQ",
@@ -502,6 +535,276 @@
 
   * **Code:** 200 <br />
     **Content:** `{"notice":{"text":"Artist Deleted!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+**Calificador - Ver Todos**
+----
+  Ver Todos los Calificadores.
+
+* **URL**
+
+  api/calificadores
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"},{...},{...}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Ver Un Calificador**
+----
+  Ver un  Calificador.
+
+* **URL**
+
+  api/calificador/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `id=id Calificador`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+**Calificador - Ver Un Calificador por id de usuario**
+----
+  Ver un  Calificadors.
+
+* **URL**
+
+  api/calificador/user/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   `id= id usuario`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+
+**Calificador - Calificador logueado**
+----
+  Ver Calificador/usuario actualmente logueado en el server.
+
+* **URL**
+
+  api/calificador/user/logged
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+   None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{"id":"1","id_user":"3","tipo_cal":"empresa","foto_perfil":"URL_TO_PATH","foto_portada":"URL_TO_PATH_port","preferencias":"[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"}]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Nuevo Calificador**
+----
+  Registrar nuevo Calificador.
+
+* **URL**
+
+  api/calificador/add
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+   `{
+      id_user : 3,
+      tipo_cal : "empresa",
+      foto_perfil : "URL_TO_PATH",
+      foto_portada : "URL_TO_PATH_port",
+      preferencias : "[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"calificador Added!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Editar**
+----
+  Editar Calificador existente.
+
+* **URL**
+
+  /calificador/update/:id
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   `id = id Calificador`
+
+* **Data Params**
+
+   `{
+      foto_perfil : "URL_TO_PATH",
+      foto_portada : "URL_TO_PATH_port",
+      preferencias : "[{'cat':'rock','subcat': ['punk','grounge']},{'cat':'tropical','subcat': ['salsa','merengue']}]"
+    }`
+
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"calificador Updated!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificador - Eliminar**
+----
+  Eliminar Calificador.
+
+* **URL**
+
+  api/calificador/delete/:id
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   `id = id Calificador`
+
+* **Data Params**
+
+   None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"calificador Deleted!"}, "status" : 200}`
+ 
+* **Error Response:**
+
+  * **Code:** GENERAL <br />
+    **Content:** `{"error":{"text":'ERROR MESSAGE'}}`
+
+
+**Calificar!**
+----
+  Calificar un artista.
+
+* **URL**
+
+  /calificar/:id_artista/:id_calificador
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   `id_artista = id Artista`
+   `id_calificador = id Calificador`
+
+* **Data Params**
+
+   `{
+      originalidad : 5,
+      contenido : 5,
+      propuesta : 5,
+      imagen : 5,
+      calidad : 5,
+      comentario : "El artista se ve muy bien pero le falta originalidad"
+    }`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"notice":{"text":"Calification Added!"}, "status" : 200,"score":3.75000000}`
  
 * **Error Response:**
 

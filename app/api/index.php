@@ -17,5 +17,7 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 require_once '../src/routes/login.php';
 require_once '../src/routes/user.php';
 require_once '../src/routes/artist.php';
+require_once '../src/routes/calificador.php';
+require_once '../src/routes/calificar.php';
 
 $app->run();

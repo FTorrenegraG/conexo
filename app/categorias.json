@@ -1,0 +1,64 @@
+{
+      "categorias" : [
+            {"nombre" : "Dibujo"},
+            {"nombre" : "Pintura"},
+            {"nombre" : "Escultura"},
+            {"nombre" : "Música",
+             "subcategorias" : [
+                  "Clásica",
+                  "Blues",
+                  "Jazz",
+                  "R&B",
+                  "Rock and Roll",
+                  "Gospel",
+                  "Soul",
+                  "Rock",
+                  "Metal",
+                  "Punk",
+                  "Country",
+                  "Funk",
+                  "Disco",
+                  "House",
+                  "Techno",
+                  "Pop",
+                  "Ska",
+                  "Reggae",
+                  "Hip Hop",
+                  "Salsa",
+                  "Urbano",
+                  "Vallenato",
+                  "Merengue",
+                  "Ranchera",
+                  "Electrónica",
+                  "Folclor",
+                  "Boleros",
+                  "Rap"
+             ]
+            },
+            {"nombre" : "Danza",
+             "subcategorias" : [
+                  "Ballet",
+                  "Folclor",
+                  "Urbano",
+                  "Contemporaneo",
+                  "Tango",
+                  "Árabe",
+                  "Salsa",
+                  "Rock and Roll"
+             ]
+            },
+            {"nombre" : "Teatro"},
+            {"nombre" : "Literatura"},
+            {"nombre" : "Audiovisuales",
+             "subcategorias" : [
+                  "Cine",
+                  "Fotografía",
+                  "Audio",
+                  "Video",
+                  "Producción",
+                  "Iluminación",
+             ]
+
+            },
+      ]
+}
