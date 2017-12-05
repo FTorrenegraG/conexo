@@ -49,26 +49,24 @@
 					<div class="col-xs-6">
 						<div class="row">
 							<div class="col-xs-2" >
-	                            <span class="clasificacion">{{artist.clasificacion}}</span>
-	                        </div>
-	                        <div class="col-xs-10" >
-	                            <fieldset class="rating">
+                  <span class="clasificacion">{{artist.clasificacion}}</span>
+              </div>
+              <div class="col-xs-10" >
+                  <fieldset class="rating">
 								    <i class="fa" ng-class="{'fa-star': (artist.clasificacion >= 1) ,'fa-star-o': (artist.clasificacion == 0) ,'fa-star-half-o': (artist.clasificacion < 1 && artist.clasificacion >0) }" aria-hidden="true"></i>
 								    <i class="fa" ng-class="{'fa-star': (artist.clasificacion >= 2) ,'fa-star-o': (artist.clasificacion <= 1) ,'fa-star-half-o': (artist.clasificacion < 2 && artist.clasificacion >1) }" aria-hidden="true"></i>
 								    <i class="fa" ng-class="{'fa-star': (artist.clasificacion >= 3) ,'fa-star-o': (artist.clasificacion <= 2) ,'fa-star-half-o': (artist.clasificacion < 3 && artist.clasificacion >2) }" aria-hidden="true"></i>
 								    <i class="fa" ng-class="{'fa-star': (artist.clasificacion >= 4) ,'fa-star-o': (artist.clasificacion <= 3) ,'fa-star-half-o': (artist.clasificacion < 4 && artist.clasificacion >3) }" aria-hidden="true"></i>
 								    <i class="fa" ng-class="{'fa-star': (artist.clasificacion == 5) ,'fa-star-o': (artist.clasificacion <= 4) ,'fa-star-half-o': (artist.clasificacion < 5 && artist.clasificacion >4) }" aria-hidden="true"></i>
 								</fieldset>
-	                        </div>
-	                    </div>
+              </div>
+            </div>
 					</div>
 					<div class="col-xs-4 col-xs-offset-2">
-						
 						<div class="img-network" ng-repeat="network in networks">
-                            <a target="_blank" ng-href="{{network.href}}"><img ng-src="{{network.img}}"></a>
-                        </div>
-                    
-					</div>
+                <a target="_blank" ng-href="{{network.href}}"><img ng-src="{{network.img}}"></a>
+            </div>
+          </div>
 				</div>
 			</div>
 			<div class="col-xs-12 text-perfil">

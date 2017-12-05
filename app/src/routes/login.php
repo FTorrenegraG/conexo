@@ -7,7 +7,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app->post('/login', function(Request $request, Response $response){
 	$email = $request->getParam('email');
 	$pass = md5($request->getParam('pass'));
-
 	$sql = "SELECT id,first_name,last_name,email,cc_nit,type FROM users WHERE email = '$email' && pass = '$pass'";
 
 	try{

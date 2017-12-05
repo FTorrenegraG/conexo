@@ -124,21 +124,30 @@ angular.module("conexo")
 		$scope.user = {type: type_user}
 		$scope.slide += 1
 		$scope.slide_artist = 1
+		$scope.slide_calificador = 1
+	}
+	$scope.setTypeCalificador = function(type_user){
+		$scope.user.tipo_cal = type_user
+		$scope.slide_calificador += 1
 	}
 	$scope.next_slide_artist = function (){
 		$scope.slide_artist += 1	
 	}
-
+	$scope.next_slide_calificador = function (){
+		$scope.slide_calificador += 1	
+	}
 	$scope.sent_signup_artist = function(){
 		if($scope.user.categoria){
+			if (!$scope.user.subcategoria)
+				$scope.user.subcategoria = "N/A"
 			DataBaseService.postDB("/user/new",$scope.user).success(function(data){
 				if (data.status != 400){
-					$scope.user.id_user = data.id
+					$scope.user.id_user = data.userInfo[0].id
 					DataBaseService.postDB("/artist/add",$scope.user).success(function(data){
 						if (data.status != 400){
 							alert("Registro completo")
 							$timeout(function(){
-								$window.location.href = "/#/artists/"+data.id;
+								$window.location.href = "/#/artists/"+data.artistInfo[0].id;
 			            	},100)
 						}else{
 							alert(data.notice.text)
@@ -150,7 +159,27 @@ angular.module("conexo")
 			})
 		}
 	}
-
+	$scope.sent_signup_calificador = function(){
+		
+		DataBaseService.postDB("/user/new",$scope.user).success(function(data){
+			if (data.status != 400){
+				$scope.user.id_user = data.userInfo[0].id
+				DataBaseService.postDB("/calificador/add",$scope.user).success(function(data){
+					if (data.status != 400){
+						alert("Registro completo")
+						$timeout(function(){
+							$window.location.href = "/#/home";
+		            	},100)
+					}else{
+						alert(data.notice.text)
+					}
+				})
+			}else{
+				alert(data.notice.text)
+			}
+		})
+		
+	}
 	$scope.sent_login = function () {
 		Session.login($scope.login).success(function(data){
 			if (data.status != 400){

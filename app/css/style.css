@@ -8641,6 +8641,8 @@ nav a {
   .signup h3 {
     text-align: center;
     margin-bottom: 25px; }
+  .signup h4 {
+    text-align: center; }
   .signup .btn-artist {
     background: #4CBFAE;
     /* For browsers that do not support gradients */
@@ -8651,6 +8653,18 @@ nav a {
     background: -moz-linear-gradient(bottom right, #062F48, #D72E92);
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(to bottom right, #062F48, #D72E92);
+    /* Standard syntax */
+    color: white; }
+  .signup .btn-calificador {
+    background: #4CBFAE;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #062F48, #4CBFAE);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #062F48, #4CBFAE);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #062F48, #4CBFAE);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #062F48, #4CBFAE);
     /* Standard syntax */
     color: white; }
   .signup .input-group-addon {
@@ -8696,29 +8710,31 @@ nav a {
       /* For Firefox 3.6 to 15 */
       background: linear-gradient(to bottom right, #062F48, #4CBFAE);
       /* Standard syntax */ }
-    .signup .select-type .category-overlay {
-      transition: all 0.3s linear;
-      z-index: 1;
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
+  .signup .category-overlay {
+    transition: all 0.3s linear;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 00;
+    background-clip: content-box, padding-box;
+    padding: 0 15px;
+    background-color: black; }
+    .signup .category-overlay.over-t {
+      opacity: 0.5; }
+    .signup .category-overlay span {
+      padding: 20px;
+      opacity: 1;
+      color: white;
+      display: flex;
+      align-items: center;
       width: 100%;
-      opacity: 00;
-      background-clip: content-box, padding-box;
-      padding: 0 15px;
-      background-color: black; }
-      .signup .select-type .category-overlay.over-t {
-        opacity: 0.5; }
-      .signup .select-type .category-overlay span {
-        opacity: 1;
-        color: white;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        font-size: 20px;
-        text-align: center; }
+      height: 100%;
+      font-size: 20px;
+      text-align: center;
+      justify-content: center; }
 
 .footer {
   color: white;
