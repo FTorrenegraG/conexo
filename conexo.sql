@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-12-2017 a las 22:51:10
+-- Tiempo de generación: 05-12-2017 a las 08:11:10
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -64,11 +64,29 @@ INSERT INTO `artists` (`id`, `id_user`, `nombre_artista`, `foto_perfil`, `foto_p
 CREATE TABLE `calificaciones` (
   `id_artista` int(11) NOT NULL,
   `id_calificador` int(11) NOT NULL,
-  `valor` text COLLATE utf32_spanish2_ci NOT NULL,
+  `originalidad` int(11) NOT NULL,
+  `contenido` int(11) NOT NULL,
+  `propuesta` int(11) NOT NULL,
+  `imagen` int(11) NOT NULL,
+  `calidad` int(11) NOT NULL,
   `comentario` text COLLATE utf32_spanish2_ci NOT NULL,
   `fecha` date NOT NULL,
   `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `calificaciones`
+--
+
+INSERT INTO `calificaciones` (`id_artista`, `id_calificador`, `originalidad`, `contenido`, `propuesta`, `imagen`, `calidad`, `comentario`, `fecha`, `estado`) VALUES
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 1, 1, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 1, 1, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
