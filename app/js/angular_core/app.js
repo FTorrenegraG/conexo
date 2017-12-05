@@ -1,3 +1,4 @@
+var URL_Api = 'http://localhost:9000/api'
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -12,6 +13,10 @@ angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
     .when("/home", {
         templateUrl : "partial-views/home.html",
         controller: "homeController as homeCtrl"
+    })
+    .when("/artists/:artist_id", {
+        templateUrl : "partial-views/artist.html",
+        controller: "artistsController as artistsCtrl"
     })
     .otherwise({ redirectTo: '/home' })    
 }])

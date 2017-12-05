@@ -1,6 +1,5 @@
 angular.module("conexo")
 .factory('DataBaseService', ['$http','Session', function AuthorizationFactory($http,Session) {
-	var URL_Api = 'http://localhost:9000/api'
 	return {
 		postDB : function (url,data) {
 			return $http({

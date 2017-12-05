@@ -1,5 +1,23 @@
 angular.module("conexo")
-.controller("indexController",function ($scope,$timeout) {
+.controller("indexController",function ($scope,$timeout,$location,Session) {
+	if (Session.isAuth()){
+		var user = Session.getUser()
+		if (user){
+			$scope.current_user = user;
+		}else{
+			Session.deleteAll();
+			$scope.current_user = {
+				email: ""
+			}
+		}
+	}else{
+		Session.deleteAll();
+		$scope.current_user = {
+			email: ""
+		}
+	}
+})
+.controller("footerController",function ($scope,$timeout) {
 	$scope.networks = [
 		{img: "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-256.png", name: "Linkedin", href: "#"},
 		{img: "http://biz-techservices.com/wp-content/uploads/2016/08/biz_tech_email.jpg", name: "Correo", href: "#"},
@@ -7,4 +25,5 @@ angular.module("conexo")
 		{img: "https://www.pi-expertises.com/wp-content/uploads/2016/10/twitter-bird-white-on-blue.png", name: "Twitter", href: "#"},
 		{img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png", name: "Youtube", href: "#"},
 		{img: "https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png", name: "Instagram", href: "#"}]
+	
 })
