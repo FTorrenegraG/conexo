@@ -21,7 +21,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"notice":{"text":"User Logged In!"},"status":200,"user_info":[info]}`
+    **Content:** `{"notice":{"text":"User Logged In!"},"status":200,"user_info":[info],"user_profile":[profile_info]}`
  
 * **Error Response:**
 
