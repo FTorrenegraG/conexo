@@ -8195,9 +8195,20 @@ nav a {
     top: 15px;
     height: 20px;
     border: 0.5px solid white; }
-  .navbar-transparent .logout li:first-child a {
-    padding-right: 0;
-    font-style: italic; }
+  .navbar-transparent .logout {
+    margin-right: 15px; }
+    .navbar-transparent .logout li:first-child a {
+      padding-right: 0;
+      font-style: italic; }
+    .navbar-transparent .logout img {
+      position: absolute;
+      right: -55px;
+      top: -5px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      object-position: 50% 50%; }
   .navbar-transparent .open {
     background-color: transparent;
     background: transparent;
@@ -8451,7 +8462,8 @@ nav a {
     margin-top: 10px; }
   .results img {
     border-radius: 50%;
-    width: 100%;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     object-position: 50% 50%; }
   .results .row_result {
@@ -8569,7 +8581,10 @@ nav a {
     background-color: #D72E92;
     border-color: #D72E92;
     color: white; }
-    .artist .home-div .category-artist:hover {
+    .artist .home-div .category-artist.category-sub-artist {
+      left: 26%;
+      font-size: 10px;
+      font-weight: normal;
       background-color: #8D2F7A;
       border-color: #8D2F7A; }
 

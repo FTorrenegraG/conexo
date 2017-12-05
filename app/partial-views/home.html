@@ -20,13 +20,13 @@
         <li><a href="#">Categorías</a></li>
       </ul>
       
-      <ul class="nav navbar-nav navbar-right center_v login" ng-hide="current_user.id">
+      <ul class="nav navbar-nav navbar-right center_v login" ng-hide="current_user.user.id">
         <li><a href="#">Inscríbete</a></li>
         <li><a class="manito" data-toggle="modal" data-target="#modalLogin">Ingresar</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.id">
+      <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
         <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
-        <li><a href="#"><b>{{current_user.first_name + ' ' + current_user.last_name}}</a></b></li>
+        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
