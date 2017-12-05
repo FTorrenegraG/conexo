@@ -31,7 +31,214 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<div class="container signup">
+	<div class="row slide1" ng-show="slide == 1">
+		<h3>Deseas inscríbirte en <b>conexo</b> como :</h3>
+		<div class="col-xs-6" ng-click="setType(2)">
+			<div class="select-type s1">
+				<span ng-hide="hovering1">Artista</span>
+				<div class="category-overlay" ng-mouseenter="hovering1=true" ng-mouseleave="hovering1=false" ng-class="{'over-t': hovering1}">
+					<span class="manito">Eres un artista y deseas entrar a conexo para que nuestros calificadores evaluen tu trabajo</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6" ng-click="setType(3)">
+			<div class="select-type s2">
+				<span ng-hide="hovering2">Calificador</span>
+				<div class="category-overlay" ng-mouseenter="hovering2=true" ng-mouseleave="hovering2=false" ng-class="{'over-t': hovering2}">
+					<span class="manito">Deseas entrar a conexo para calificar a los distintos artistas que desean entrar a conexo</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row slide2" ng-show="slide == 2 && user.type == 2">
+		<div class="col-xs-12">
+			<h3>Artista</h3>
+			<!-- 
+				cc_nit
+				first_name
+				last_name
+				email
+				pass
+			-->
+			<div class="row" ng-show="slide_artist == 1">
+				<form ng-submit="next_slide_artist()">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+			              <label for="nameuser">Documento de identidad</label>
+			              <input type="number" class="form-control" id="nameuser" placeholder="123456789" ng-model="user.cc_nit" required>
+			            </div>
+					</div>
+					<div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+			              <label for="nameuser">Nombres</label>
+			              <input type="text" class="form-control" id="nameuser" placeholder="Nombres" ng-model="user.first_name" required>
+			            </div>
+					</div>
+					<div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+			              <label for="nameuser">Apellidos</label>
+			              <input type="text" class="form-control" id="nameuser" placeholder="Apellidos" ng-model="user.last_name" required>
+			            </div>
+					</div>
+					<div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+			              <label for="nameuser">Correo electronico</label>
+			              <input type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="user.email" required>
+			            </div>
+					</div>
+					<div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+			              <label for="nameuser">Contraseña</label>
+			              <input type="password" class="form-control" id="nameuser" placeholder="********" ng-model="user.password" required>
+			            </div>
+					</div>
+					<div class="col-md-4 col-md-offset-4">
+						<button type="submit" class="btn btn-default btn-block btn-artist">Continuar</button>
+					</div>
+				</form>
+			</div>
+			<div class="row" ng-show="slide_artist == 2">
+				<!--
+					nombre_artista
+					foto_perfil
+					foto_portada
+					categoria
+					subcategoria
+					facebook
+					instagram
+					youtube
+					video
+					perfil
+					valor
+					descuento
+					descservicio
+				-->
+				<form ng-submit="sent_signup_artist()">
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Nombre artístico</label>
+			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.nombre_artista" required>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Link foto de perfil</label>
+			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.foto_perfil" required>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Link foto de portada</label>
+			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.foto_portada" required>
+			            </div>
+					</div>
+					<div ng-class="{'col-md-6' : !category_has_sub(user.categoria),'col-md-3' : category_has_sub(user.categoria)}">
+						<div class="form-group">
+			              <label for="nameuser">Categoria artística</label>
+			              <select class="form-control" required ng-change="change_subs(user.categoria)" ng-model="user.categoria">
+			              	<option ng-repeat="categoria in categories" ng-value="categoria.name">{{categoria.name}}</option>
+			              </select>
+			            </div>
+					</div>
+					<div class="col-md-3" ng-show="category_has_sub(user.categoria)">
+						<div class="form-group">
+			              <label for="nameuser">Subcategoria artística</label>
+			              <select class="form-control" required  ng-model="user.subcategoria">
+			              	<option ng-repeat="scategoria in subcategorias" ng-value="scategoria">{{scategoria}}</option>
+			              </select>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Link Facebook</label>
+			              <div class="input-group">
+							  <input required ng-model="user.facebook" type="text" class="form-control" placeholder="https://www.facebook.com/..." aria-describedby="basic-addon1">
+							  <span class="input-group-addon" id="basic-addon1">
+							  	<img src="https://cdn.worldvectorlogo.com/logos/facebook-icon.svg">
+							  </span>
+							</div>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Link Instagram</label>
+			              <div class="input-group">
+							  <input required ng-model="user.instagram" type="text" class="form-control" placeholder="https://www.instagram.com/..." aria-describedby="basic-addon1">
+							  <span class="input-group-addon" id="basic-addon1">
+							  	<img src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png">
+							  </span>
+							</div>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Link Youtube</label>
+			              <div class="input-group">
+							  <input required ng-model="user.youtube" type="text" class="form-control" placeholder="https://www.youtube.com/channel/..." aria-describedby="basic-addon1">
+							  <span class="input-group-addon" id="basic-addon1">
+							  	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png">
+							  </span>
+							</div>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Link video Youtube de 1 min para evaluación</label>
+			              <div class="input-group">
+							  <input required ng-model="user.video" type="text" class="form-control" placeholder="https://youtu.be/..." aria-describedby="basic-addon1">
+							  <span class="input-group-addon" id="basic-addon1">
+							  	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png">
+							  </span>
+							</div>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Descripción del perfil</label>
+			              <textarea required class="form-control" ng-model="user.perfil" rows="10" placeholder="..."></textarea>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Descripción del servicio ofrecido</label>
+			              <textarea required class="form-control" ng-model="user.descservicio" rows="10" placeholder="..."></textarea>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Valor del servicio ofrecido</label>
+			              <div class="input-group">
+							  <span class="input-group-addon">$</span>
+							  <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" ng-model="user.valor" required>
+							</div>
+			            </div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+			              <label for="nameuser">Porcentaje descuento para calificadores</label>
+			              <div class="input-group">
+							  <span class="input-group-addon">%</span>
+							  <input type="number" min="0" max="100" step="1" class="form-control" id="nameuser" placeholder="Apellidos" ng-model="user.descuento" required>
+							</div>
+			            </div>
+			        </div>
+			        <div class="col-md-12">
+						<button type="submit" class="btn btn-default btn-block btn-artist">Enviar</button>
+					</div>
+				</form>
+			</div>
+			<div class="row">
+				
+			</div>
+		</div>
+	</div>
+	<div class="row slide2" ng-show="slide == 2 && user.type == 3">
+		<div class="col-xs-12">
+			<h3>Calificador</h3>
+		</div>
+	</div>
+</div>
 <div  class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -43,7 +250,7 @@
         <div class="modal-body">
             <div class="form-group">
               <label for="nameuser">Correo electronico</label>
-              <input production-qty type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
+              <input type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
             </div>
             <div class="form-group">
               <label for="nameuser">Contraseña</label>

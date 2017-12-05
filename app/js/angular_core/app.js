@@ -18,6 +18,10 @@ angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
         templateUrl : "partial-views/artist.html",
         controller: "artistsController as artistsCtrl"
     })
+    .when("/signup", {
+        templateUrl : "partial-views/signup.html",
+        controller: "signupController as signupCtrl"
+    })
     .otherwise({ redirectTo: '/home' })    
 }])
 .directive("scroll", function ($window) {
