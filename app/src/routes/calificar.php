@@ -15,6 +15,8 @@ $app->post('/calificar/{id_artista}/{id_calificador}', function(Request $request
 	$fecha = date('m/d/Y h:i:s', time());;
 	$estado = 1;
 	
+	$sql_disable = "UPDATE calificaciones SET estado = 0 WHERE id_artista = id_artista AND id_calificador = $id_calificador";
+
 	$sql = "INSERT INTO calificaciones (id_artista, id_calificador, originalidad, contenido, propuesta, imagen, calidad, comentario, fecha, estado) VALUES (:id_artista, :id_calificador, :originalidad, :contenido, :propuesta, :imagen, :calidad, :comentario, :fecha, :estado)";
 
 	try{
@@ -22,6 +24,9 @@ $app->post('/calificar/{id_artista}/{id_calificador}', function(Request $request
 		$db = new db();
 		// Connect
 		$db = $db->connect();
+
+		$stmt_disable = $db->prepare($sql_disable);
+		$stmt_disable->execute();
 
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam(':id_artista',$id_artista);
