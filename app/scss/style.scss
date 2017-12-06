@@ -41,7 +41,18 @@ nav{
   text-align: left;
   vertical-align: middle;
 }
+.label-input{
+	text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    font-weight: bold;
 
+}
+.marginv-v{
+	margin: 10px 0;
+}
 .navbar-transparent {
    background: transparent;
    border-color: transparent;
@@ -478,6 +489,20 @@ nav{
 		
 	}
 }
+.calificador{
+	h2{
+		display: inline-block;
+	}
+	.btn-calificador{
+		margin-top: 25px;
+		background: $color_button_search_back; /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, $gradient_home_1, $color_button_search_back); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, $gradient_home_1, $color_button_search_back); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, $gradient_home_1, $color_button_search_back); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, $gradient_home_1, $color_button_search_back); /* Standard syntax */
+		color: white;
+	}
+}
 .artist{
 	.container {
 		width: 60%;
@@ -574,12 +599,43 @@ nav{
 			width: 30px;
 			font-size: 11px;
 		}
+		.btn-calificar{
+			background-color: $color_button_search_up;
+			border-color: $color_button_search_up;
+			color: white;
+		}
 		.rating{
 			.fa{
 				color: orange;
 				font-size: 23px;
 				margin: 0 5px;
 			}
+			.tooltip-rating{
+				position: absolute;
+				height: auto;
+				padding: 10px;
+				background-color: rgba(241, 241, 241, 0.9);
+				border-radius: 3px;
+				border: 1px solid #999;
+				z-index: 999;
+				width: 174px;
+				line-height: 22px;
+				bottom:130%;
+				display: none;
+			}
+		}
+		.font-value{
+			height: 30px;
+		}
+		.description-service{
+			border: solid 1px grey;
+			border-radius: 10px;
+			width: 100%;
+			display: block;
+			padding: 15px;
+			font-size: 15px;
+			color: $color-grey-special;
+
 		}
 		.text-perfil{
 			margin: 30px 0 30px 0;
@@ -766,4 +822,36 @@ nav{
 			}
 		}
 	}
+}
+.siguiente-artista{
+	position: fixed;
+    right: -10px;
+    top: 50%;
+    width: 200px;
+    padding: 20px;
+    padding-left: 26px;
+    background-color: #0c2439;
+    border-radius: 3px 0px 0px 3px;
+    border: 1px solid #FFF;
+    overflow: hidden;
+    opacity: 0.8;
+    font-weight: bold;
+    color: #ffffff;
+    transition:all 0.1s linear;
+    &:hover{
+    	opacity:1;
+    	cursor:pointer;
+    	right: -2px;
+    }
+    .next{
+		position: absolute;
+		border: solid white;
+		border-width: 0 4px 4px 0;
+		display: inline-block;
+		padding: 24px;
+		transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		top: 4px;
+		right: 30px;
+    }
 }

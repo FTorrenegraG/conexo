@@ -180,6 +180,8 @@ angular.module("conexo")
 		$scope.searchDB(category.name)
 		$scope.search = category.name
 	}
+
+	
 	$scope.sent_login = function () {
 		Session.login($scope.login).success(function(data){
 			if (data.status != 400){
@@ -188,7 +190,10 @@ angular.module("conexo")
 				$scope.current_user = user;
 				$('#modalLogin').modal('hide');
 				$timeout(function(){
-					$window.location.href = "/#/artists/"+data.user_profile[0].id;
+					if (data.user_info[0].type == 2)
+						$window.location.href = "/#/artists/"+data.user_profile[0].id;
+					if (data.user_info[0].type == 3)
+						$window.location.href = "/#/calificador/"+data.user_profile[0].id;
             	},500)
 			}else{
 				alert(data.notice.text)

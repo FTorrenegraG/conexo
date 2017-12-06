@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default navbar-transparent navbar-fixed-top nav-min">
+  <div class="background-nav">
+  </div>
+  <div class="container-custom-1">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="img/brandname.png">
+        </a> 
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center center_v">
+        <li><a href="#">¿Que es conexo?</a></li>
+        <li><a href="#">Alcaldía</a></li>
+        <li><a href="#">Categorías</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right center_v login" ng-hide="current_user.user.id">
+        <li><a href="#/signup">Inscríbete</a></li>
+        <li><a class="manito" data-toggle="modal" data-target="#modalLogin">Ingresar</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
+        <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
+        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="row artist">
+	<div class="col-xs-12 home-div" ng-class="{'home-div-min' : results.length > 0}">
+		<img class="img-home-background" ng-src="{{calificador.foto_portada}}">
+	</div>
+</div>
+<div class="row artist calificador">
+	<div class="container body">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>{{calificador.nombre_calificador}}</h2>
+        <button class="btn btn-default btn-calificador btn-lg pull-right" ng-click="goToCalificar()">Empezar a calificar</button>
+			</div>
+			<div class="col-xs-12 text-perfil">
+				{{calificador.perfil}}
+			</div>
+
+		</div>
+	</div>
+</div>

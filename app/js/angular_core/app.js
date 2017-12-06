@@ -1,4 +1,4 @@
-var URL_Api = 'api'
+var URL_Api = 'http://localhost/conexo/app/api'
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -17,6 +17,10 @@ angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
     .when("/artists/:artist_id", {
         templateUrl : "partial-views/artist.html",
         controller: "artistsController as artistsCtrl"
+    })
+    .when("/calificador/:calificador_id", {
+        templateUrl : "partial-views/calificador.html",
+        controller: "calificadorController as calificadorCtrl"
     })
     .when("/signup", {
         templateUrl : "partial-views/signup.html",

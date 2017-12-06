@@ -188,7 +188,10 @@ angular.module("conexo")
 				$scope.current_user = user;
 				$('#modalLogin').modal('hide');
 				$timeout(function(){
-					$window.location.href = "/#/home";
+					if (data.user_info[0].type == 2)
+						$window.location.href = "/#/artists/"+data.user_profile[0].id;
+					if (data.user_info[0].type == 3)
+						$window.location.href = "/#/calificador/"+data.user_profile[0].id;
             	},500)
 			}else{
 				alert(data.notice.text)

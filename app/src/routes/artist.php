@@ -26,7 +26,28 @@ $app->get('/artists', function(Request $request, Response $response){
 // Get Single artists
 $app->get('/artist/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
-	$sql = "SELECT * FROM artists WHERE id = $id";
+	$sql = "SELECT artists.*, round(avg(calificaciones.originalidad+calificaciones.contenido+calificaciones.propuesta+calificaciones.imagen+calificaciones.calidad)/5 ,1) as calificacion  FROM artists LEFT OUTER JOIN calificaciones ON artists.id = calificaciones.id_artista and calificaciones.estado = 1 WHERE artists.id = $id";
+
+	try{
+		// Get db Obj
+		$db = new db();
+		// Connect
+		$db = $db->connect();
+
+		$stmt = $db->query($sql);
+		$artist = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+
+		echo json_encode($artist); 
+	}catch(PDOException $e){
+		echo '{"error":{"text":'.$e->getMessage().'}}';
+	}
+});
+
+// Get Single artists
+$app->get('/artist/random/{id_calificador}', function(Request $request, Response $response){
+	$id_calificador = $request->getAttribute('id_calificador');
+	$sql = "SELECT * FROM artists WHERE artists.id not in (SELECT calificaciones.id_artista FROM calificaciones where calificaciones.id_calificador = $id_calificador) ORDER BY RAND() LIMIT 1";
 
 	try{
 		// Get db Obj
@@ -47,7 +68,7 @@ $app->get('/artist/{id}', function(Request $request, Response $response){
 // Get Single artists score
 $app->get('/artist/score/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
-	$sql = "SELECT id_artista, avg(originalidad+contenido+propuesta+imagen+calidad)/5 as promedio FROM `calificaciones` WHERE id_artista = $id and estado = 1";
+	$sql = "SELECT id_artista, round(avg(originalidad+contenido+propuesta+imagen+calidad)/5) as promedio FROM `calificaciones` WHERE id_artista = $id and estado = 1";
 
 	try{
 		$db = new db();
@@ -65,10 +86,30 @@ $app->get('/artist/score/{id}', function(Request $request, Response $response){
 	}
 });
 
+$app->get('/artist/detailedscore/{id}', function(Request $request, Response $response){
+	$id = $request->getAttribute('id');
+	$sql = "SELECT id_artista, round(avg(originalidad)) as originalidad, round(avg(contenido)) as contenido, round(avg(propuesta)) as propuesta, round(avg(imagen)) as imagen, round(avg(calidad)) as calidad FROM `calificaciones` WHERE id_artista = $id and estado = 1";
+
+	try{
+		$db = new db();
+		$db = $db->connect();
+
+		$stmt = $db->query($sql);
+		$calificaciones = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+
+		$score = json_encode($calificaciones);
+
+		echo '{"detailedScore":'.$score.', "status" : 200}';
+	}catch(PDOException $e){
+		echo '{"error":{"text":'.$e->getMessage().'}}';
+	}
+});
+
 // Search artists
 $app->get('/artist/search/{search}', function(Request $request, Response $response){
 	$search = urldecode($request->getAttribute('search'));
-	$sql = "SELECT * FROM artists WHERE Concat(nombre_artista, '', categoria, '', subcategoria, '', perfil, '', valor, '', descservicio) like '%$search%'";
+	$sql = "SELECT artists.*, round(avg(calificaciones.originalidad+calificaciones.contenido+calificaciones.propuesta+calificaciones.imagen+calificaciones.calidad)/5 ,1) as calificacion  FROM artists LEFT OUTER JOIN calificaciones ON artists.id = calificaciones.id_artista and calificaciones.estado = 1 wHERE Concat(nombre_artista, '', categoria, '', subcategoria, '', perfil, '', valor, '', descservicio) like '%$search%'";
 
 	try{
 		// Get db Obj
@@ -78,9 +119,18 @@ $app->get('/artist/search/{search}', function(Request $request, Response $respon
 
 		$stmt = $db->query($sql);
 		$artist = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$db = null;
 
-		echo json_encode($artist); 
+		$db = null;
+		// echo 'Artist: ';
+		// print_r( $artist[0]->id);
+		if ($artist[0]->id == '') {
+			$array = [];
+			echo json_encode($array); 
+		}else{
+			echo json_encode($artist); 
+		}
+
+		
 	}catch(PDOException $e){
 		echo '{"error":{"text":'.$e->getMessage().'}}';
 	}

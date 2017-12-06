@@ -88,14 +88,14 @@
 							<tr ng-repeat="result_i in results | orderBy : propertyName : reverse" class="row row_result">
 								<td class="col-sm-1"><a class="to_profile" ng-href="#/artists/{{result_i.id}}"><img ng-src="{{result_i.foto_perfil}}"></a></td>
 								<td class="col-sm-8"><a class="to_profile" ng-href="#/artists/{{result_i.id}}"><b>{{result_i.nombre_artista}}</b><br><i>{{findCategory(result_i.categoria).name}}</i></a></td>
-								<td class="col-sm-1 "><span class="clasificacion">{{result_i.clasificacion}}</span></td>
+								<td class="col-sm-1 "><span class="clasificacion">{{result_i.calificacion}}</span></td>
 								<td class="col-sm-2 starts">
 									<fieldset class="rating">
-									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 1) ,'fa-star-o': (result_i.clasificacion == 0) ,'fa-star-half-o': (result_i.clasificacion < 1 && result_i.clasificacion >0) }" aria-hidden="true"></i>
-									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 2) ,'fa-star-o': (result_i.clasificacion <= 1) ,'fa-star-half-o': (result_i.clasificacion < 2 && result_i.clasificacion >1) }" aria-hidden="true"></i>
-									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 3) ,'fa-star-o': (result_i.clasificacion <= 2) ,'fa-star-half-o': (result_i.clasificacion < 3 && result_i.clasificacion >2) }" aria-hidden="true"></i>
-									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion >= 4) ,'fa-star-o': (result_i.clasificacion <= 3) ,'fa-star-half-o': (result_i.clasificacion < 4 && result_i.clasificacion >3) }" aria-hidden="true"></i>
-									    <i class="fa" ng-class="{'fa-star': (result_i.clasificacion == 5) ,'fa-star-o': (result_i.clasificacion <= 4) ,'fa-star-half-o': (result_i.clasificacion < 5 && result_i.clasificacion >4) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.calificacion >= 1) ,'fa-star-o': (result_i.calificacion == 0) ,'fa-star-half-o': (result_i.calificacion < 1 && result_i.calificacion >0) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.calificacion >= 2) ,'fa-star-o': (result_i.calificacion <= 1) ,'fa-star-half-o': (result_i.calificacion < 2 && result_i.calificacion >1) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.calificacion >= 3) ,'fa-star-o': (result_i.calificacion <= 2) ,'fa-star-half-o': (result_i.calificacion < 3 && result_i.calificacion >2) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.calificacion >= 4) ,'fa-star-o': (result_i.calificacion <= 3) ,'fa-star-half-o': (result_i.calificacion < 4 && result_i.calificacion >3) }" aria-hidden="true"></i>
+									    <i class="fa" ng-class="{'fa-star': (result_i.calificacion == 5) ,'fa-star-o': (result_i.calificacion <= 4) ,'fa-star-half-o': (result_i.calificacion < 5 && result_i.calificacion >4) }" aria-hidden="true"></i>
 									</fieldset>
 								</td>
 							</tr>
@@ -137,7 +137,7 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button ng-click="sent_login()" class="btn btn-default">Enviar Datos</button>
+          <button ng-click="sent_login()" class="btn btn-default">Ingresar</button>
         </div>
         </form>
       </div>

@@ -8168,6 +8168,17 @@ nav a {
   text-align: left;
   vertical-align: middle; }
 
+.label-input {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  font-weight: bold; }
+
+.marginv-v {
+  margin: 10px 0; }
+
 .navbar-transparent {
   background: transparent;
   border-color: transparent; }
@@ -8529,6 +8540,23 @@ nav a {
       background-color: #4CBFAE;
       border-color: #4CBFAE; }
 
+.calificador h2 {
+  display: inline-block; }
+
+.calificador .btn-calificador {
+  margin-top: 25px;
+  background: #4CBFAE;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #062F48, #4CBFAE);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #062F48, #4CBFAE);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #062F48, #4CBFAE);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #062F48, #4CBFAE);
+  /* Standard syntax */
+  color: white; }
+
 .artist .container {
   width: 60%;
   margin: 0 auto; }
@@ -8618,10 +8646,36 @@ nav a {
     height: 30px;
     width: 30px;
     font-size: 11px; }
+  .artist .body .btn-calificar {
+    background-color: #D72E92;
+    border-color: #D72E92;
+    color: white; }
   .artist .body .rating .fa {
     color: orange;
     font-size: 23px;
     margin: 0 5px; }
+  .artist .body .rating .tooltip-rating {
+    position: absolute;
+    height: auto;
+    padding: 10px;
+    background-color: rgba(241, 241, 241, 0.9);
+    border-radius: 3px;
+    border: 1px solid #999;
+    z-index: 999;
+    width: 174px;
+    line-height: 22px;
+    bottom: 130%;
+    display: none; }
+  .artist .body .font-value {
+    height: 30px; }
+  .artist .body .description-service {
+    border: solid 1px grey;
+    border-radius: 10px;
+    width: 100%;
+    display: block;
+    padding: 15px;
+    font-size: 15px;
+    color: #646f7f; }
   .artist .body .text-perfil {
     margin: 30px 0 30px 0;
     text-align: justify-content;
@@ -8795,3 +8849,33 @@ nav a {
       .footer .input-search .input-group-addon:hover:before {
         background-color: #8D2F7A;
         border-color: #8D2F7A; }
+
+.siguiente-artista {
+  position: fixed;
+  right: -10px;
+  top: 50%;
+  width: 200px;
+  padding: 20px;
+  padding-left: 26px;
+  background-color: #0c2439;
+  border-radius: 3px 0px 0px 3px;
+  border: 1px solid #FFF;
+  overflow: hidden;
+  opacity: 0.8;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.1s linear; }
+  .siguiente-artista:hover {
+    opacity: 1;
+    cursor: pointer;
+    right: -2px; }
+  .siguiente-artista .next {
+    position: absolute;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 24px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    top: 4px;
+    right: 30px; }

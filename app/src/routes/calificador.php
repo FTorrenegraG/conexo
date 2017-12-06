@@ -97,13 +97,16 @@ $app->get('/calificador/user/{id}', function(Request $request, Response $respons
 $app->post('/calificador/add', function(Request $request, Response $response){
 	$id_user = $request->getParam('id_user');
 	$tipo_cal = $request->getParam('tipo_cal');
+	$nombre_calificador = $request->getParam('nombre_calificador');
+	$perfil = $request->getParam('perfil');
+	$tipo_cal = $request->getParam('tipo_cal');
 	$foto_perfil = $request->getParam('foto_perfil');
 	$foto_portada = $request->getParam('foto_portada');
 	$preferencias = $request->getParam('preferencias') ? $request->getParam('preferencias') : null;
 
 
 
-	$sql = "INSERT INTO calificador (id_user, tipo_cal, foto_perfil, foto_portada, preferencias) VALUES (:id_user,:tipo_cal, :foto_perfil, :foto_portada, :preferencias)";
+	$sql = "INSERT INTO calificador (id_user, nombre_calificador, perfil, tipo_cal, foto_perfil, foto_portada, preferencias) VALUES (:id_user, :nombre_calificador, :perfil, :tipo_cal, :foto_perfil, :foto_portada, :preferencias)";
 
 	try{
 		// Get db Obj
@@ -114,6 +117,8 @@ $app->post('/calificador/add', function(Request $request, Response $response){
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam(':id_user',$id_user);
 		$stmt->bindParam(':tipo_cal',$tipo_cal);
+		$stmt->bindParam(':nombre_calificador',$nombre_calificador);
+		$stmt->bindParam(':perfil',$perfil);
 		$stmt->bindParam(':foto_perfil',$foto_perfil);
 		$stmt->bindParam(':foto_portada',$foto_portada);
 		$stmt->bindParam(':preferencias',$preferencias);
@@ -143,12 +148,16 @@ $app->post('/calificador/add', function(Request $request, Response $response){
 // Update Single calificador
 $app->put('/calificador/update/{id}', function(Request $request, Response $response){
 	$id = $request->getAttribute('id');
+	$nombre_calificador = $request->getParam('nombre_calificador');
+	$perfil = $request->getParam('perfil');
 	$foto_perfil = $request->getParam('foto_perfil');
 	$foto_portada = $request->getParam('foto_portada');
 	$preferencias = $request->getParam('preferencias');
 
 	$update_string = '';
 
+	if ($nombre_calificador) $update_string = $update_string.'nombre_calificador = :nombre_calificador,';
+	if ($perfil) $update_string = $update_string.'perfil = :perfil,';
 	if ($foto_perfil) $update_string = $update_string.'foto_perfil = :foto_perfil,';
 	if ($foto_portada) $update_string = $update_string.'foto_portada = :foto_portada,';
 	if ($preferencias) $update_string = $update_string.'preferencias = :preferencias,';
@@ -165,6 +174,8 @@ $app->put('/calificador/update/{id}', function(Request $request, Response $respo
 
 		$stmt = $db->prepare($sql);
 
+		if ($nombre_calificador) $stmt->bindParam(':nombre_calificador',$nombre_calificador);
+		if ($perfil) $stmt->bindParam(':perfil',$perfil);
 		if ($foto_perfil) $stmt->bindParam(':foto_perfil',$foto_perfil);
 		if ($foto_portada) $stmt->bindParam(':foto_portada',$foto_portada);
 		if ($preferencias) $stmt->bindParam(':preferencias',$preferencias);
