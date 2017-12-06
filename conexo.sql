@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-12-2017 a las 01:55:59
+-- Tiempo de generación: 06-12-2017 a las 14:01:00
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -53,7 +53,10 @@ CREATE TABLE `artists` (
 --
 
 INSERT INTO `artists` (`id`, `id_user`, `nombre_artista`, `foto_perfil`, `foto_portada`, `categoria`, `subcategoria`, `facebook`, `instagram`, `youtube`, `video`, `perfil`, `valor`, `descuento`, `descservicio`, `estado`, `vencimiento`) VALUES
-(1, 4, 'Rancid 2', 'URL_TO_PATH', 'URL_TO_PATH_port', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
+(1, 4, 'Rancid 2', 'URL_TO_PATH', 'URL_TO_PATH_port', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL),
+(2, 7, 'fellix', 'sad', 'asd', 'MÃºsica', 'Jazz', 'asd', 'asd', 'asd', 'asd', 'dfgmsngdfvjkslkdf', '1000', '10', 'sfkjgsndfksjdfkldfjgn', 1, NULL),
+(3, 8, 'Punke', 'https://images.vice.com/noisey/content-images/contentimage/no-slug/76ed2c089d3618aa28a7bd6a74b77b22.jpg', 'https://yes2wes.files.wordpress.com/2015/06/punk-colours-i11187.jpg', 'MÃºsica', 'Punk', 'no', 'no', 'no', 'https://www.youtube.com/watch?v=vVy9Lgpg1m8', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '100', '5', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, NULL),
+(4, 10, 'trgertg', 'wtgwtg', 'wrgwrtg', 'Escultura', 'N/A', 'getgeg', 'ewtgwetg', 'wetgtg', 'wrtgwrtg', 'wetgwtgwtgwtg', '434234', '34', 'wegwetgetg', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,8 +91,13 @@ INSERT INTO `calificaciones` (`id_artista`, `id_calificador`, `originalidad`, `c
 (1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
 (1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
 (1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
-(1, 1, 1, 1, 1, 1, 1, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 2, 2, 2, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1);
+(1, 1, 1, 1, 1, 1, 1, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 2, 2, 2, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(2, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalidad', '0000-00-00', 1),
+(3, 3, 3, 5, 3, 4, 5, 'sgfgdfg', '0000-00-00', 0),
+(3, 3, 2, 2, 2, 2, 2, 'no nada', '0000-00-00', 0),
+(3, 3, 5, 5, 5, 5, 5, 'rveb', '0000-00-00', 0),
+(4, 3, 4, 5, 5, 5, 5, '5tg5g5h', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -100,6 +108,8 @@ INSERT INTO `calificaciones` (`id_artista`, `id_calificador`, `originalidad`, `c
 CREATE TABLE `calificador` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `nombre_calificador` varchar(255) COLLATE utf32_spanish2_ci NOT NULL,
+  `perfil` text COLLATE utf32_spanish2_ci NOT NULL,
   `tipo_cal` varchar(255) COLLATE utf32_spanish2_ci NOT NULL,
   `foto_perfil` text COLLATE utf32_spanish2_ci NOT NULL,
   `foto_portada` text COLLATE utf32_spanish2_ci NOT NULL,
@@ -110,9 +120,10 @@ CREATE TABLE `calificador` (
 -- Volcado de datos para la tabla `calificador`
 --
 
-INSERT INTO `calificador` (`id`, `id_user`, `tipo_cal`, `foto_perfil`, `foto_portada`, `preferencias`) VALUES
-(1, 3, 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\',\'bachata\']}]'),
-(2, 5, 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\']}]');
+INSERT INTO `calificador` (`id`, `id_user`, `nombre_calificador`, `perfil`, `tipo_cal`, `foto_perfil`, `foto_portada`, `preferencias`) VALUES
+(1, 3, 'name example', '', 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\',\'bachata\']}]'),
+(2, 5, '', '', 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\']}]'),
+(3, 9, '', '', 'Empresa', 'asd', 'as', NULL);
 
 -- --------------------------------------------------------
 
@@ -159,7 +170,11 @@ INSERT INTO `users` (`id`, `cc_nit`, `first_name`, `last_name`, `email`, `pass`,
 (3, '112957238', 'Andres', 'Blanco', 'andresblanco86@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 3),
 (4, '11295557777', 'Sergio', 'FandiÃ±o', 'sergiofandino@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2),
 (5, '777777', 'Jarlyn', 'Reatiga', 'jarlyn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 3),
-(6, '123456', 'Pedro', 'Perez', 'email@user.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
+(6, '123456', 'Pedro', 'Perez', 'email@user.com', 'e10adc3949ba59abbe56e057f20f883e', 1),
+(7, '1140875062', 'Felix', 'Too', 'f.torrenegra@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2),
+(8, '1129572380', 'Sergi', 'Blanco', 'sergio@mail.com', 'e10adc3949ba59abbe56e057f20f883e', 2),
+(9, '123', 'asd', 'asd', 'asd', 'e10adc3949ba59abbe56e057f20f883e', 3),
+(10, '52345', 'srgsreg', 'srgsgrs', 'user@user.com', 'd41d8cd98f00b204e9800998ecf8427e', 2);
 
 --
 -- Índices para tablas volcadas
@@ -207,13 +222,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `calificador`
 --
 ALTER TABLE `calificador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
@@ -225,7 +240,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
