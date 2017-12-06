@@ -180,6 +180,13 @@ angular.module("conexo")
 		$scope.searchDB(category.name)
 		$scope.search = category.name
 	}
+	$scope.searchCali = function (id) {
+		DataBaseService.getDB("/artist/score/"+id).success(function (data) {
+			if (data.status != 400){
+				return data.score
+			}
+		})
+	}
 	$scope.sent_login = function () {
 		Session.login($scope.login).success(function(data){
 			if (data.status != 400){
