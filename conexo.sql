@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-12-2017 a las 08:20:28
+-- Tiempo de generación: 06-12-2017 a las 01:55:59
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -53,9 +53,8 @@ CREATE TABLE `artists` (
 --
 
 INSERT INTO `artists` (`id`, `id_user`, `nombre_artista`, `foto_perfil`, `foto_portada`, `categoria`, `subcategoria`, `facebook`, `instagram`, `youtube`, `video`, `perfil`, `valor`, `descuento`, `descservicio`, `estado`, `vencimiento`) VALUES
-(1, 4, 'Rancid 2', 'https://i.ytimg.com/vi/x9B6--fvhXQ/maxresdefault.jpg', 'https://colombiareports.com/wp-content/uploads/2017/02/car3.x79936.jpg', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
+(1, 4, 'Rancid 2', 'URL_TO_PATH', 'URL_TO_PATH_port', '0', '0', 'rancid', 'rancid', 'UCFSjnN55tV-mecyG0mYvhdQ', '9SCF1zbsBfU', 'Cualquier texto', '50000000', '10', 'Incluye<br />- 10 temas<br />-Equipo tecnico', 1, NULL);
 
-  
 -- --------------------------------------------------------
 
 --
@@ -80,14 +79,17 @@ CREATE TABLE `calificaciones` (
 --
 
 INSERT INTO `calificaciones` (`id_artista`, `id_calificador`, `originalidad`, `contenido`, `propuesta`, `imagen`, `calidad`, `comentario`, `fecha`, `estado`) VALUES
-(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 1, 1, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 1, 1, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
-(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1);
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 3, 3, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 1, 1, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 1, 1, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 5, 5, 5, 5, 5, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 0),
+(1, 1, 1, 1, 1, 1, 1, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1),
+(1, 2, 2, 2, 2, 2, 2, 'El artista se ve muy bien pero le falta originalida', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,7 @@ CREATE TABLE `calificador` (
   `tipo_cal` varchar(255) COLLATE utf32_spanish2_ci NOT NULL,
   `foto_perfil` text COLLATE utf32_spanish2_ci NOT NULL,
   `foto_portada` text COLLATE utf32_spanish2_ci NOT NULL,
-  `preferencias` text COLLATE utf32_spanish2_ci NOT NULL
+  `preferencias` text COLLATE utf32_spanish2_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish2_ci;
 
 --
@@ -109,7 +111,8 @@ CREATE TABLE `calificador` (
 --
 
 INSERT INTO `calificador` (`id`, `id_user`, `tipo_cal`, `foto_perfil`, `foto_portada`, `preferencias`) VALUES
-(1, 3, 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\',\'bachata\']}]');
+(1, 3, 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\',\'bachata\']}]'),
+(2, 5, 'empresa', 'URL_TO_PATH', 'URL_TO_PATH_port', '[{\'cat\':\'rock\',\'subcat\': [\'punk\',\'grounge\']},{\'cat\':\'tropical\',\'subcat\': [\'salsa\',\'merengue\']}]');
 
 -- --------------------------------------------------------
 
@@ -154,7 +157,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `cc_nit`, `first_name`, `last_name`, `email`, `pass`, `type`) VALUES
 (1, '1129572380', 'Sergio Andres', 'Blanco Caballero', 'sergioblanco86@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1),
 (3, '112957238', 'Andres', 'Blanco', 'andresblanco86@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 3),
-(4, '11295557777', 'Sergio', 'FandiÃ±o', 'sergiofandino@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2);
+(4, '11295557777', 'Sergio', 'FandiÃ±o', 'sergiofandino@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2),
+(5, '777777', 'Jarlyn', 'Reatiga', 'jarlyn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 3),
+(6, '123456', 'Pedro', 'Perez', 'email@user.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
 
 --
 -- Índices para tablas volcadas
@@ -208,7 +213,7 @@ ALTER TABLE `artists`
 -- AUTO_INCREMENT de la tabla `calificador`
 --
 ALTER TABLE `calificador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
@@ -220,7 +225,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
