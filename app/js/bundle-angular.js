@@ -128,16 +128,14 @@ angular.module("conexo")
 			email: ""
 		}
 	}
-	$scope.networks = [
-		{img: "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-256.png", name: "Linkedin", href: "#"},
-		{img: "http://biz-techservices.com/wp-content/uploads/2016/08/biz_tech_email.jpg", name: "Correo", href: "#"},
-		{img: "https://cdn.worldvectorlogo.com/logos/facebook-icon.svg", name: "Facebook", href: "#"},
-		{img: "https://www.pi-expertises.com/wp-content/uploads/2016/10/twitter-bird-white-on-blue.png", name: "Twitter", href: "#"},
-		{img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png", name: "Youtube", href: "#"},
-		{img: "https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png", name: "Instagram", href: "#"}]
 	$scope.searchDB = function (id) {
 		DataBaseService.getDB("/artist/"+id).success(function (data) {
 			$scope.artist = data[0]
+			$scope.networks = [
+				{img: "https://cdn.worldvectorlogo.com/logos/facebook-icon.svg", href: data[0].facebook,name: "Facebook"},
+				{img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png", href: data[0].youtube,name: "Youtube"},
+				{img: "https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png", href: data[0].instagram,name: "Instagram"}
+			]
 		})
 	}
 	$scope.searchDB($routeParams.artist_id)
@@ -167,7 +165,7 @@ angular.module("conexo")
 	}
 })
 angular.module("conexo")
-.controller("homeController",function ($scope,$timeout,DataBaseService,Session,$location) {
+.controller("homeController",function ($scope,$timeout,DataBaseService,Session,$window) {
 	if (Session.isAuth()){
 		var user = Session.getUser()
 		if (user){
@@ -355,6 +353,9 @@ angular.module("conexo")
 				Session.setUser(user)
 				$scope.current_user = user;
 				$('#modalLogin').modal('hide');
+				$timeout(function(){
+					$window.location.href = "/#/artists/"+data.user_profile[0].id;
+            	},500)
 			}else{
 				alert(data.notice.text)
 			}
@@ -522,21 +523,30 @@ angular.module("conexo")
 		$scope.user = {type: type_user}
 		$scope.slide += 1
 		$scope.slide_artist = 1
+		$scope.slide_calificador = 1
+	}
+	$scope.setTypeCalificador = function(type_user){
+		$scope.user.tipo_cal = type_user
+		$scope.slide_calificador += 1
 	}
 	$scope.next_slide_artist = function (){
 		$scope.slide_artist += 1	
 	}
-
+	$scope.next_slide_calificador = function (){
+		$scope.slide_calificador += 1	
+	}
 	$scope.sent_signup_artist = function(){
 		if($scope.user.categoria){
+			if (!$scope.user.subcategoria)
+				$scope.user.subcategoria = "N/A"
 			DataBaseService.postDB("/user/new",$scope.user).success(function(data){
 				if (data.status != 400){
-					$scope.user.id_user = data.id
+					$scope.user.id_user = data.userInfo[0].id
 					DataBaseService.postDB("/artist/add",$scope.user).success(function(data){
 						if (data.status != 400){
 							alert("Registro completo")
 							$timeout(function(){
-								$window.location.href = "/#/artists/"+data.id;
+								$window.location.href = "/#/artists/"+data.artistInfo[0].id;
 			            	},100)
 						}else{
 							alert(data.notice.text)
@@ -548,7 +558,27 @@ angular.module("conexo")
 			})
 		}
 	}
-
+	$scope.sent_signup_calificador = function(){
+		
+		DataBaseService.postDB("/user/new",$scope.user).success(function(data){
+			if (data.status != 400){
+				$scope.user.id_user = data.userInfo[0].id
+				DataBaseService.postDB("/calificador/add",$scope.user).success(function(data){
+					if (data.status != 400){
+						alert("Registro completo")
+						$timeout(function(){
+							$window.location.href = "/#/home";
+		            	},100)
+					}else{
+						alert(data.notice.text)
+					}
+				})
+			}else{
+				alert(data.notice.text)
+			}
+		})
+		
+	}
 	$scope.sent_login = function () {
 		Session.login($scope.login).success(function(data){
 			if (data.status != 400){

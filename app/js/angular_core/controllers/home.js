@@ -1,5 +1,5 @@
 angular.module("conexo")
-.controller("homeController",function ($scope,$timeout,DataBaseService,Session,$location) {
+.controller("homeController",function ($scope,$timeout,DataBaseService,Session,$window) {
 	if (Session.isAuth()){
 		var user = Session.getUser()
 		if (user){
@@ -187,6 +187,9 @@ angular.module("conexo")
 				Session.setUser(user)
 				$scope.current_user = user;
 				$('#modalLogin').modal('hide');
+				$timeout(function(){
+					$window.location.href = "/#/artists/"+data.user_profile[0].id;
+            	},500)
 			}else{
 				alert(data.notice.text)
 			}
