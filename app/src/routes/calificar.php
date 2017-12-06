@@ -12,7 +12,8 @@ $app->post('/calificar/{id_artista}/{id_calificador}', function(Request $request
 	$propuesta = $request->getParam('propuesta');
 	$imagen = $request->getParam('imagen');
 	$calidad = $request->getParam('calidad');
-	$fecha = date('m/d/Y h:i:s', time());;
+	// $fecha = date('d-m-Y', time());
+	$fecha = "10/10/10";
 	$estado = 1;
 	
 	$sql_disable = "UPDATE calificaciones SET estado = 0 WHERE id_artista = id_artista AND id_calificador = $id_calificador";

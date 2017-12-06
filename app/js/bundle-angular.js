@@ -1,4 +1,4 @@
-var URL_Api = 'http://localhost/conexo/app/api'
+var URL_Api = 'api'
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -260,36 +260,6 @@ angular.module("conexo")
 			email: ""
 		}
 	}
-	$scope.slides = [
-		{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car1.x79936.jpg",
-			info: {name_a: "slide 1", ocupation: "ocupación 1"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car2.x79936.jpg",
-			info: {name_a: "slide 2", ocupation: "ocupación 2"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car3.x79936.jpg",
-			info: {name_a: "slide 3", ocupation: "ocupación 3"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car4.x79936.jpg",
-			info: {name_a: "slide 4", ocupation: "ocupación 4"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car5.x79936.jpg",
-			info: {name_a: "slide 5", ocupation: "ocupación 5"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car6.x79936.jpg",
-			info: {name_a: "slide 6", ocupation: "ocupación 6"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car7.x79936.jpg",
-			info: {name_a: "slide 7", ocupation: "ocupación 7"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car8.x79936.jpg",
-			info: {name_a: "slide 8", ocupation: "ocupación 8"}
-		},{
-			img: "https://colombiareports.com/wp-content/uploads/2017/02/car9.x79936.jpg",
-			info: {name_a: "slide 9", ocupation: "ocupación 9"}
-		}
-	]
 	$scope.categories = [
         {
         	"img": "https://i.ytimg.com/vi/oIpkUbu3ETg/maxresdefault.jpg",
@@ -401,19 +371,30 @@ angular.module("conexo")
 				break;
 		}
 	}
+	$scope.getArtist = function(){
+		DataBaseService.getDB("/artists").success(function (data){
+			if(data.status != 400){
+				$scope.slides = data
+				$scope.changeSlide()
+			}
+		})
+	}
 	$scope.changeSlide = function () {
 		$timeout(function () {
 			$scope.slide_i += 1
-			if ($scope.slide_i >= 8){
+			if ($scope.slide_i >= $scope.slides.length){
 				$scope.slide_i = 0
 			}
 			$scope.changeSlide()
 		},4000)
 	}
-	$scope.changeSlide()
 	$scope.searchDB = function (text) {
 		if (text != ""){
 			DataBaseService.getDB("/artist/search/"+text).success(function (data) {
+				data.forEach(function(dta_i){
+					if (!dta_i.calificacion)
+						dta_i.calificacion = 0.0
+				})
 				$scope.results = data
 			})
 		}else{
@@ -425,7 +406,7 @@ angular.module("conexo")
 		$scope.search = category.name
 	}
 
-	
+	$scope.getArtist();
 	$scope.sent_login = function () {
 		Session.login($scope.login).success(function(data){
 			if (data.status != 400){
@@ -593,6 +574,9 @@ angular.module("conexo")
 	    	}
 	    }
     }
+    $scope.reload = function (){
+    	$window.location.reload();
+    }
     $scope.change_subs = function(categoria){
     	category = $scope.categories.find(function(categoria_i){if (categoria_i.name == categoria) return categoria_i})
     	if (category){
@@ -607,10 +591,6 @@ angular.module("conexo")
 		$scope.slide += 1
 		$scope.slide_artist = 1
 		$scope.slide_calificador = 1
-	}
-	$scope.setTypeCalificador = function(type_user){
-		$scope.user.tipo_cal = type_user
-		$scope.slide_calificador += 1
 	}
 	$scope.next_slide_artist = function (){
 		$scope.slide_artist += 1	
@@ -627,10 +607,8 @@ angular.module("conexo")
 					$scope.user.id_user = data.userInfo[0].id
 					DataBaseService.postDB("/artist/add",$scope.user).success(function(data){
 						if (data.status != 400){
-							alert("Registro completo")
-							$timeout(function(){
-								$window.location.href = "/#/artists/"+data.artistInfo[0].id;
-			            	},100)
+							$scope.login = $scope.user
+							$scope.sent_login()
 						}else{
 							alert(data.notice.text)
 						}
@@ -642,16 +620,14 @@ angular.module("conexo")
 		}
 	}
 	$scope.sent_signup_calificador = function(){
-		
+		$scope.user.tipo_cal = 'Empresa'
 		DataBaseService.postDB("/user/new",$scope.user).success(function(data){
 			if (data.status != 400){
 				$scope.user.id_user = data.userInfo[0].id
 				DataBaseService.postDB("/calificador/add",$scope.user).success(function(data){
 					if (data.status != 400){
-						alert("Registro completo")
-						$timeout(function(){
-							$window.location.href = "/#/home";
-		            	},100)
+						$scope.login = $scope.user
+						$scope.sent_login()
 					}else{
 						alert(data.notice.text)
 					}

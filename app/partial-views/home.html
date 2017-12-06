@@ -43,8 +43,8 @@
 	        </div>
 	        <span class="advance-search-span"><a href="#">Búsqueda Avanzada</a></span>
 	    </div>
-	    <img class="img-home-background" ng-repeat-start="slide in slides" ng-show="slide_i == $index" ng-src="{{slide.img}}">
-	   	<span class="span-info-home" ng-show="slide_i == $index && results.length == 0" ng-repeat-end><b class="info-into-span">{{slide.info.name_a}}</b><i class="info-into-span">{{slide.info.ocupation}}</i><a class="info-into-span btn btn-default btn-xs btn-view-profile" href=""><b>Ver perfil</b></a></span>
+	    <img class="img-home-background" ng-repeat-start="slide in slides" ng-show="slide_i == $index" ng-src="{{slide.foto_portada}}">
+	   	<span class="span-info-home" ng-show="slide_i == $index && results.length == 0" ng-repeat-end><b class="info-into-span">{{slide.nombre_artista}}</b><i class="info-into-span">{{slide.categoria}}</i><a class="info-into-span btn btn-default btn-xs btn-view-profile" ng-href="#/artists/{{slide.id}}"><b>Ver perfil</b></a></span>
 	   	<div class="img-overlay"></div>
 	</div>
 	<div class="col-xs-12 categories-home" ng-hide="results.length > 0">

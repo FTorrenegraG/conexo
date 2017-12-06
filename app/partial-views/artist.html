@@ -46,12 +46,12 @@
 			</div>
 			<div class="col-xs-12 margin-top">
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-sm-6 col-md-9 col-lg-8">
 						<div class="row">
-							<div class="col-xs-2" >
+							<div class="col-xs-2 col-md-1" >
                   <span class="clasificacion">{{artist.calificacion}}</span>
               </div>
-              <div class="col-xs-5" >
+              <div class="col-md-6" >
                   <fieldset class="rating">
 								    <i class="fa" ng-class="{'fa-star': (artist.calificacion >= 1) ,'fa-star-o': (artist.calificacion == 0) ,'fa-star-half-o': (artist.calificacion < 1 && artist.calificacion >0) }" aria-hidden="true"></i>
 								    <i class="fa" ng-class="{'fa-star': (artist.calificacion >= 2) ,'fa-star-o': (artist.calificacion <= 1) ,'fa-star-half-o': (artist.calificacion < 2 && artist.calificacion >1) }" aria-hidden="true"></i>
@@ -69,30 +69,29 @@
                     </div>
 								  </fieldset>
               </div>
-              <div class="col-xs-2" ng-show="current_user.user.type == 3" >
-                  <button class="btn btn-default btn-calificar" data-toggle="modal" data-target="#modalCalificar">Calificar este artista</button>
+              <div class="col-md-5" ng-show="current_user.user.type == 3" >
+                  <button class="btn btn-default btn-calificar btn-block" data-toggle="modal" data-target="#modalCalificar">Calificar este artista</button>
               </div>
             </div>
 					</div>
-					<div class="col-xs-4 col-xs-offset-2">
+					<div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-0">
 						<div class="img-network pull-right" ng-repeat="network in networks">
                 <a target="_blank" ng-href="{{network.href}}"><img ng-src="{{network.img}}"></a>
             </div>
           </div>
 				</div>
 			</div>
+      <div class="col-xs-12 media-artist">
+        <iframe width="560" height="315" ng-src="{{get_url_youtube()}}" frameborder="0" allowfullscreen></iframe>
+      </div>
 			<div class="col-xs-12 text-perfil">
 				{{artist.perfil}}
 			</div>
-			<div class="col-xs-12 media-artist">
-				<iframe width="560" height="315" ng-src="{{get_url_youtube()}}" frameborder="0" allowfullscreen></iframe>
-			</div>
-      <div class="col-xs-12" ng-show="current_user.user.type == 3" >
+			<div class="col-xs-12" ng-show="current_user.user.type == 3" >
         <div class="form-group">
           <label for="nameuser">Descripción del servicio</label>
           <p class="description-service">{{artist.descservicio}}</p>
         </div>
-        
       </div>
       <div class="col-xs-12 text-perfil" ng-show="current_user.user.type == 3" >
         <div class="row">

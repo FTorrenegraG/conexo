@@ -109,7 +109,7 @@ $app->get('/artist/detailedscore/{id}', function(Request $request, Response $res
 // Search artists
 $app->get('/artist/search/{search}', function(Request $request, Response $response){
 	$search = urldecode($request->getAttribute('search'));
-	$sql = "SELECT artists.*, round(avg(calificaciones.originalidad+calificaciones.contenido+calificaciones.propuesta+calificaciones.imagen+calificaciones.calidad)/5 ,1) as calificacion  FROM artists LEFT OUTER JOIN calificaciones ON artists.id = calificaciones.id_artista and calificaciones.estado = 1 wHERE Concat(nombre_artista, '', categoria, '', subcategoria, '', perfil, '', valor, '', descservicio) like '%$search%'";
+	$sql = "SELECT artists.*, round(avg(calificaciones.originalidad+calificaciones.contenido+calificaciones.propuesta+calificaciones.imagen+calificaciones.calidad)/5 ,1) as calificacion  FROM artists LEFT OUTER JOIN calificaciones ON artists.id = calificaciones.id_artista and calificaciones.estado = 1 wHERE Concat(nombre_artista, '', categoria, '', subcategoria, '', perfil, '', valor, '', descservicio) like '%$search%' GROUP BY artists.id";
 
 	try{
 		// Get db Obj
