@@ -99,7 +99,7 @@ $app->post('/calificador/add', function(Request $request, Response $response){
 	$tipo_cal = $request->getParam('tipo_cal');
 	$foto_perfil = $request->getParam('foto_perfil');
 	$foto_portada = $request->getParam('foto_portada');
-	$preferencias = $request->getParam('preferencias');
+	$preferencias = $request->getParam('preferencias') ? $request->getParam('preferencias') : null;
 
 
 
