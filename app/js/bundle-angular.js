@@ -1,4 +1,4 @@
-var URL_Api = 'api'
+var URL_Api = 'http://10.90.28.9:9000/api'
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -204,6 +204,15 @@ angular.module("conexo")
 			}
 		})
 	}
+	$scope.goToProfile = function () {
+		if ($scope.current_user.user.type == 2){
+			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+		}else{
+			if ($scope.current_user.user.type == 3){
+				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+			}
+		}
+	}
 })
 angular.module("conexo")
 .controller("calificadorController",function ($scope,$routeParams,$timeout,DataBaseService,Session,$window) {
@@ -240,6 +249,15 @@ angular.module("conexo")
 	}
 	$scope.delete_login = function () {
 		Session.logout()
+	}
+	$scope.goToProfile = function () {
+		if ($scope.current_user.user.type == 2){
+			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+		}else{
+			if ($scope.current_user.user.type == 3){
+				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+			}
+		}
 	}
 })
 angular.module("conexo")
@@ -431,6 +449,15 @@ angular.module("conexo")
 	$scope.delete_login = function () {
 		Session.logout()
 	}
+	$scope.goToProfile = function () {
+		if ($scope.current_user.user.type == 2){
+			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+		}else{
+			if ($scope.current_user.user.type == 3){
+				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+			}
+		}
+	}
 })
 angular.module("conexo")
 .controller("indexController",function ($scope,$timeout,$location,Session) {
@@ -482,6 +509,7 @@ angular.module("conexo")
 			email: ""
 		}
 	}
+	$scope.type_users = [{id: 2, name: "Artista"},{id: 3, name: "Mercado Cultural"}]
 	$scope.categories = [
         {
         	"img": "https://i.ytimg.com/vi/oIpkUbu3ETg/maxresdefault.jpg",
@@ -578,6 +606,7 @@ angular.module("conexo")
     	$window.location.reload();
     }
     $scope.change_subs = function(categoria){
+    	$scope.user.categoria = categoria
     	category = $scope.categories.find(function(categoria_i){if (categoria_i.name == categoria) return categoria_i})
     	if (category){
 	    	if (category.subcategorias){
@@ -588,15 +617,21 @@ angular.module("conexo")
 	$scope.slide = 1
 	$scope.setType = function(type_user){
 		$scope.user = {type: type_user}
-		$scope.slide += 1
+		$scope.slide = 2
 		$scope.slide_artist = 1
 		$scope.slide_calificador = 1
 	}
 	$scope.next_slide_artist = function (){
 		$scope.slide_artist += 1	
 	}
+	$scope.back_artist = function(){
+		$scope.slide_artist -= 1	
+	}
 	$scope.next_slide_calificador = function (){
 		$scope.slide_calificador += 1	
+	}
+	$scope.back_calificador = function(){
+		$scope.slide_calificador -= 1	
 	}
 	$scope.sent_signup_artist = function(){
 		if($scope.user.categoria){
@@ -661,5 +696,14 @@ angular.module("conexo")
 	}
 	$scope.delete_login = function () {
 		Session.logout()
+	}
+	$scope.goToProfile = function () {
+		if ($scope.current_user.user.type == 2){
+			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+		}else{
+			if ($scope.current_user.user.type == 3){
+				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+			}
+		}
 	}
 })

@@ -26,13 +26,13 @@
       </ul>
       <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
         <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
-        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
+        <li><a class="manito" ng-click="goToProfile()"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img class="manito" ng-click="goToProfile()" ng-src="{{current_user.user_p.foto_perfil}}"></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="row artist">
-	<div class="col-xs-12 home-div" ng-class="{'home-div-min' : results.length > 0}">
+	<div class="col-xs-12 home-div-a" ng-class="{'home-div-min' : results.length > 0}">
 		<img class="img-home-background" ng-src="{{calificador.foto_portada}}">
 	</div>
 </div>

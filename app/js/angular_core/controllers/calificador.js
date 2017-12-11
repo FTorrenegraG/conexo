@@ -34,4 +34,13 @@ angular.module("conexo")
 	$scope.delete_login = function () {
 		Session.logout()
 	}
+	$scope.goToProfile = function () {
+		if ($scope.current_user.user.type == 2){
+			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+		}else{
+			if ($scope.current_user.user.type == 3){
+				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+			}
+		}
+	}
 })

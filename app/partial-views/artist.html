@@ -26,16 +26,26 @@
       </ul>
       <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
         <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
-        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
+        <li><a class="manito" ng-click="goToProfile()"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img class="manito" ng-click="goToProfile()" ng-src="{{current_user.user_p.foto_perfil}}"></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="row artist">
-	<div class="col-xs-12 home-div" ng-class="{'home-div-min' : results.length > 0}">
+	<div class="col-xs-12 home-div-a">
 		<img class="img-home-background" ng-src="{{artist.foto_portada}}">
-		<span class="btn btn-default category-artist">{{artist.categoria}}</span>
-		<span class="btn btn-default category-artist category-sub-artist">{{artist.subcategoria}}</span>
+    <div class="row buttons">
+      <div class="container buttons-into">
+        <div class="col-sm-6 col-sm-2">
+          <button class="btn btn-default btn-calificar" ng-show="current_user.user.type == 3" data-toggle="modal" data-target="#modalCalificar">Calificar este artista</button>
+        </div>
+        <div class="col-sm-6">
+          <div class="img-network pull-right" ng-repeat="network in networks">
+              <a target="_blank" ng-href="{{network.href}}"><img ng-src="{{network.img}}"></a>
+          </div>
+        </div>
+      </div>
+    </div>
 	</div>
 </div>
 <div class="row artist">
@@ -43,15 +53,17 @@
 		<div class="row ">
 			<div class="col-xs-12">
 				<h2>{{artist.nombre_artista}}</h2>
+      </div>
+      <div class="col-xs-12">
+        <span class="btn btn-default category-artist">{{artist.categoria}}</span>
+        <span ng-show="artist.subcategoria != 'N/A'" class="btn btn-default category-artist category-sub-artist">{{artist.subcategoria}}</span>
 			</div>
 			<div class="col-xs-12 margin-top">
 				<div class="row">
-					<div class="col-sm-6 col-md-9 col-lg-8">
+					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-xs-2 col-md-1" >
-                  <span class="clasificacion">{{artist.calificacion}}</span>
-              </div>
-              <div class="col-md-6" >
+							<div class="col-md-4" >
+                  <span><b>Calificación</b> <span class="clasificacion">{{artist.calificacion}}</span></span>
                   <fieldset class="rating">
 								    <i class="fa" ng-class="{'fa-star': (artist.calificacion >= 1) ,'fa-star-o': (artist.calificacion == 0) ,'fa-star-half-o': (artist.calificacion < 1 && artist.calificacion >0) }" aria-hidden="true"></i>
 								    <i class="fa" ng-class="{'fa-star': (artist.calificacion >= 2) ,'fa-star-o': (artist.calificacion <= 1) ,'fa-star-half-o': (artist.calificacion < 2 && artist.calificacion >1) }" aria-hidden="true"></i>
@@ -60,25 +72,28 @@
 								    <i class="fa" ng-class="{'fa-star': (artist.calificacion == 5) ,'fa-star-o': (artist.calificacion <= 4) ,'fa-star-half-o': (artist.calificacion < 5 && artist.calificacion >4) }" aria-hidden="true"></i>
 
                     <div class="tooltip-rating">
-                      <b>Detalle de calificación</b>
-                      Originalidad : {{detailed_score.originalidad}}<br />
-                      Contenido : {{detailed_score.contenido}}<br />
-                      Propuesta : {{detailed_score.propuesta}}<br />
-                      Imagen : {{detailed_score.imagen}}<br />
-                      Calidad : {{detailed_score.calidad}}<br />
+                      <p><b>Detalle de calificación</b></p>
+                      <p>Originalidad artística : <span class="pull-right">{{detailed_score.originalidad}}</span></p>
+                      <p>Descripción del servicio artístico  : <span class="pull-right">{{detailed_score.contenido}}</span></p>
+                      <p>Propuesta artística : <span class="pull-right">{{detailed_score.propuesta}}</span></p>
+                      <p>Imagen artística : <span class="pull-right">{{detailed_score.imagen}}</span></p>
+                      <p>Calidad del contenido artístico : <span class="pull-right">{{detailed_score.calidad}}</span></p>
                     </div>
 								  </fieldset>
               </div>
-              <div class="col-md-5" ng-show="current_user.user.type == 3" >
-                  <button class="btn btn-default btn-calificar btn-block" data-toggle="modal" data-target="#modalCalificar">Calificar este artista</button>
+              <div class="col-md-4" ng-show="current_user.user.type == 3" >
+                  <span><b>Valor del servicio</b></span>
+                  <br>
+                  <span class="value">${{artist.valor}}</span>
+              </div>
+              <div class="col-md-4" ng-show="current_user.user.type == 3" >
+                  <span><b>% para calificadores</b></span>
+                  <br>
+                  <span class="value">{{artist.descuento}}%</span>
               </div>
             </div>
 					</div>
-					<div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-0">
-						<div class="img-network pull-right" ng-repeat="network in networks">
-                <a target="_blank" ng-href="{{network.href}}"><img ng-src="{{network.img}}"></a>
-            </div>
-          </div>
+					
 				</div>
 			</div>
       <div class="col-xs-12 media-artist">
@@ -93,141 +108,132 @@
           <p class="description-service">{{artist.descservicio}}</p>
         </div>
       </div>
-      <div class="col-xs-12 text-perfil" ng-show="current_user.user.type == 3" >
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="nameuser">Valor del servicio</label>
-              <div class="input-group">
-                <span class="input-group-addon">$</span>
-                <input type="text" class="form-control font-value" ng-model="artist.valor" ng-disabled="true" required>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="nameuser">Porcentaje descuento para calificadores</label>
-              <div class="input-group">
-                <span class="input-group-addon">%</span>
-                <input type="text" min="0" max="100" step="1" class="form-control font-value"  ng-disabled="true" ng-model="artist.descuento" required>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 		</div>
 	</div>
 </div>
-<div  class="modal fade" id="modalCalificar" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
+<div  class="modal fade calificar modal-backgroung-custom" id="modalCalificar" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="modalPeriodLabel">Calificar artista</h4>
-        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <form>
         <div class="modal-body">
             <div class="row marginv-v">
-              <div class="col-xs-3 label-input"><span>Originalidad</span></div>
-              <div class="col-xs-9">
-                <select ng-model="calification.originalidad" class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+             <div class="col-xs-12">
+              <div class="form-group">
+                <label for="nameuser">Originalidad artística</label>
+                <div class="dropdown">
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.originalidad ? calification.originalidad : '- Selecciona calificación de originalidad -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="manito" ng-click="calification.originalidad = 1">Muy Mala</li>
+                    <li class="manito" ng-click="calification.originalidad = 2">Mala</li>
+                    <li class="manito" ng-click="calification.originalidad = 3">Buena</li>
+                    <li class="manito" ng-click="calification.originalidad = 4">Muy Buena</li>
+                    <li class="manito" ng-click="calification.originalidad = 5">Excelente</li>
+                  </ul>
+                </div>
               </div>
-            </div>  
-            <div class="row marginv-v">
-              <div class="col-xs-3 label-input"><span>Contenido</span></div>
-              <div class="col-xs-9">
-                <select ng-model="calification.contenido" class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+              <div class="form-group">
+                <label for="nameuser">Descripción del servicio artístico </label>
+                <div class="dropdown">
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.contenido ? calification.contenido : '- Selecciona calificación del servicio -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="manito" ng-click="calification.contenido = 1">Muy Mala</li>
+                    <li class="manito" ng-click="calification.contenido = 2">Mala</li>
+                    <li class="manito" ng-click="calification.contenido = 3">Buena</li>
+                    <li class="manito" ng-click="calification.contenido = 4">Muy Buena</li>
+                    <li class="manito" ng-click="calification.contenido = 5">Excelente</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="row marginv-v">
-              <div class="col-xs-3 label-input"><span>Propuesta</span></div>
-              <div class="col-xs-9">
-                <select ng-model="calification.propuesta" class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+              <div class="form-group">
+                <label for="nameuser">Propuesta artística</label>
+                <div class="dropdown">
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.propuesta ? calification.propuesta : '- Selecciona calificación de propuesta -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="manito" ng-click="calification.propuesta = 1">Muy Mala</li>
+                    <li class="manito" ng-click="calification.propuesta = 2">Mala</li>
+                    <li class="manito" ng-click="calification.propuesta = 3">Buena</li>
+                    <li class="manito" ng-click="calification.propuesta = 4">Muy Buena</li>
+                    <li class="manito" ng-click="calification.propuesta = 5">Excelente</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="row marginv-v">
-              <div class="col-xs-3 label-input"><span>Imagen</span></div>
-              <div class="col-xs-9">
-                <select ng-model="calification.imagen" class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+              <div class="form-group">
+                <label for="nameuser">Imagen artística</label>
+                <div class="dropdown">
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.imagen ? calification.imagen : '- Selecciona calificación de imagen -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="manito" ng-click="calification.imagen = 1">Muy Mala</li>
+                    <li class="manito" ng-click="calification.imagen = 2">Mala</li>
+                    <li class="manito" ng-click="calification.imagen = 3">Buena</li>
+                    <li class="manito" ng-click="calification.imagen = 4">Muy Buena</li>
+                    <li class="manito" ng-click="calification.imagen = 5">Excelente</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="row marginv-v">
-              <div class="col-xs-3 label-input"><span>Calidad</span></div>
-              <div class="col-xs-9">
-                <select ng-model="calification.calidad" class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+              <div class="form-group">
+                <label for="nameuser">Calidad del contenido artístico</label>
+                <div class="dropdown">
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.calidad ? calification.calidad : '- Selecciona calificación de calidad -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="manito" ng-click="calification.calidad = 1">Muy Mala</li>
+                    <li class="manito" ng-click="calification.calidad = 2">Mala</li>
+                    <li class="manito" ng-click="calification.calidad = 3">Buena</li>
+                    <li class="manito" ng-click="calification.calidad = 4">Muy Buena</li>
+                    <li class="manito" ng-click="calification.calidad = 5">Excelente</li>
+                  </ul>
+                </div>
               </div>
+             </div>
             </div>
             <div class="row marginv-v">
               <div class="col-xs-12">
                 <div class="form-group">
+                  <label for="nameuser">Comentario</label>
                   <textarea ng-model="calification.comentario" class="form-control" row="4" placeholder="Comentario..."></textarea>
                 </div>
               </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button ng-click="sent_calification()" class="btn btn-default">Calificar</button>
+            <div class="row marginv-v">
+              <div class="col-xs-12">
+                <button ng-click="sent_calification()" class="btn btn-default btn-calificar btn-block">Calificar</button>
+              </div>
+            </div>
         </div>
         </form>
       </div>
   </div>
 </div>
-<div  class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
+<div  class="modal fade modal-backgroung-custom login" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="modalPeriodLabel">Ingreso a conexo</h4>
-        </div>
-        <form>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="modal-body">
+          <form>
             <div class="form-group">
-              <label for="nameuser">Correo electronico</label>
+              <label class="bold" for="nameuser">Correo Electrónico</label>
               <input production-qty type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
             </div>
             <div class="form-group">
-              <label for="nameuser">Contraseña</label>
+              <label class="bold" for="nameuser">Contraseña</label>
               <input type="password" class="form-control" id="nameuser" placeholder="Contraseña" ng-model="login.pass" required>
             </div>
+            <button ng-click="sent_login()" class="btn btn-default btn-block">Ingresar</button>
+            <a href="#" class="signup-span pull-left">Olvidé mi contraseña</a>
+            <a href="#/signup" class="signup-span pull-right">Soy nuevo y quiero registrarme</a>
+          </form>
         </div>
-        <div class="modal-footer">
-          <button ng-click="sent_login()" class="btn btn-default">Ingresar</button>
-        </div>
-        </form>
       </div>
   </div>
 </div>
 <div class="siguiente-artista" ng-click="siguienteArtista(current_user.user.id)" ng-show="current_user.user.type == 3" >
     Siguiente Artista
-    <span class="next"></span>
+    <span class="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </span>
 </div>

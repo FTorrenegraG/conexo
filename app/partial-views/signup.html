@@ -26,15 +26,24 @@
       </ul>
       <ul class="nav navbar-nav navbar-right center_v logout" ng-show="current_user.user.id">
         <li><a class="manito" ng-click="delete_login()">Log Out</a></li>
-        <li><a href="#"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img ng-src="{{current_user.user_p.foto_perfil}}"></li>
+        <li><a class="manito" ng-click="goToProfile()"><b>{{current_user.user.first_name + ' ' + current_user.user.last_name}}</a></b> <img class="manito" ng-click="goToProfile()" ng-src="{{current_user.user_p.foto_perfil}}"></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container signup">
-	<div class="row slide1" ng-show="slide == 1">
-		<h3>Deseas inscríbirte en <b>CONEXO</b> como :</h3>
-		<div class="col-xs-6" ng-click="setType(2)">
+	<div class="row slide1">
+		<h3 class="col-md-8 col-md-offset-2">Deseo registrarme como: </h3>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="dropdown">
+			  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{user.type == 2 ? ('Artista') : (user.type == 3 ? ('Mercado Cultural') : '- Selecciona uno -')}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li class="manito" ng-click="setType(type_user.id)" ng-repeat="type_user in type_users">{{type_user.name}}</li>
+			  </ul>
+			</div>
+		</div>
+		<!-- <div class="col-xs-6" ng-click="setType(2)">
 			<div class="select-type s1">
 				<span ng-hide="hovering1">Artista</span>
 				<div class="category-overlay" ng-mouseenter="hovering1=true" ng-mouseleave="hovering1=false" ng-class="{'over-t': hovering1}">
@@ -49,160 +58,172 @@
 					<span class="manito">Entrar a CONEXO para calificar a los distintos artistas que desean entrar a conexo</span>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="row slide2" ng-show="slide == 2 && user.type == 2">
 		<div class="col-xs-12">
-			<h3>Artista</h3>
 			<div class="row" ng-show="slide_artist == 1">
+				<h4 class="col-md-8 col-md-offset-2"><span class="slide_number">{{slide_artist}}</span>Datos del Artista</h4>
 				<form ng-submit="next_slide_artist()">
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Documento de identidad</label>
 			              <input type="number" class="form-control" id="nameuser" placeholder="123456789" ng-model="user.cc_nit" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Nombres</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="Nombres" ng-model="user.first_name" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Apellidos</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="Apellidos" ng-model="user.last_name" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Correo electronico</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="user.email" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Contraseña</label>
 			              <input type="password" class="form-control" id="nameuser" placeholder="********" ng-model="user.pass" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
-						<button type="submit" class="btn btn-default btn-block btn-artist">Continuar</button>
+					<div class="col-md-2 col-md-offset-8">
+						<button type="submit" class="btn btn-default btn-block btn-next">Continuar</button>
 					</div>
 				</form>
 			</div>
 			<div class="row" ng-show="slide_artist == 2">
+				<h4 class="col-md-8 col-md-offset-2"><span class="slide_number">{{slide_artist}}</span>Perfil del Artista</h4>
 				<form ng-submit="sent_signup_artist()">
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Nombre artístico</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.nombre_artista" required>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link foto de perfil</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.foto_perfil" required>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link foto de portada</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.foto_portada" required>
 			            </div>
 					</div>
-					<div ng-class="{'col-md-6' : !category_has_sub(user.categoria),'col-md-3' : category_has_sub(user.categoria)}">
+					<div ng-class="{'col-md-8 col-md-offset-2' : !category_has_sub(user.categoria),'col-md-4 col-md-offset-2' : category_has_sub(user.categoria)}">
 						<div class="form-group">
 			              <label for="nameuser">Categoria artística</label>
-			              <select class="form-control" required ng-change="change_subs(user.categoria)" ng-model="user.categoria">
-			              	<option ng-repeat="categoria in categories" ng-value="categoria.name">{{categoria.name}}</option>
-			              </select>
+			              	<div class="dropdown">
+							  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{user.categoria ? user.categoria : '- Selecciona una -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							    <li class="manito" ng-click="change_subs(categoria.name)" ng-repeat="categoria in categories">{{categoria.name}}</li>
+							  </ul>
+							</div>
 			            </div>
 					</div>
-					<div class="col-md-3" ng-show="category_has_sub(user.categoria)">
+					<div class="col-md-4" ng-show="category_has_sub(user.categoria)">
 						<div class="form-group">
 			              <label for="nameuser">Subcategoria artística</label>
-			              <select class="form-control" required  ng-model="user.subcategoria">
-			              	<option ng-repeat="scategoria in subcategorias" ng-value="scategoria">{{scategoria}}</option>
-			              </select>
+			              <div class="dropdown">
+							<button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{user.subcategoria ? user.subcategoria : '- Selecciona una -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							  <li class="manito" ng-click="user.subcategoria = scategoria" ng-repeat="scategoria in subcategorias">{{scategoria}}</li>
+							</ul>
+						  </div>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link Facebook</label>
 			              <div class="input-group">
-							  <input required ng-model="user.facebook" type="text" class="form-control" placeholder="https://www.facebook.com/..." aria-describedby="basic-addon1">
-							  <span class="input-group-addon" id="basic-addon1">
-							  	<img src="https://cdn.worldvectorlogo.com/logos/facebook-icon.svg">
+							  <span class="input-group-addon input-group-addon-network facebook" id="basic-addon1">
+							  	<img src="http://www.masterdor.co.uk/Content/svg/icon-facebook.svg">
 							  </span>
+							  <input required ng-model="user.facebook" type="text" class="form-control" placeholder="https://www.facebook.com/..." aria-describedby="basic-addon1">
 							</div>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link Instagram</label>
 			              <div class="input-group">
-							  <input required ng-model="user.instagram" type="text" class="form-control" placeholder="https://www.instagram.com/..." aria-describedby="basic-addon1">
-							  <span class="input-group-addon" id="basic-addon1">
-							  	<img src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png">
+							  <span class="input-group-addon input-group-addon-network instagram" id="basic-addon1">
+							  	<img src="https://icon-icons.com/icons2/838/PNG/512/circle-instagram_icon-icons.com_66832.png">
 							  </span>
+							  <input required ng-model="user.instagram" type="text" class="form-control" placeholder="https://www.instagram.com/..." aria-describedby="basic-addon1">
 							</div>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link Youtube</label>
 			              <div class="input-group">
-							  <input required ng-model="user.youtube" type="text" class="form-control" placeholder="https://www.youtube.com/channel/..." aria-describedby="basic-addon1">
-							  <span class="input-group-addon" id="basic-addon1">
+							  <span class="input-group-addon input-group-addon-network youtube" id="basic-addon1">
 							  	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png">
 							  </span>
+							  <input required ng-model="user.youtube" type="text" class="form-control" placeholder="https://www.youtube.com/channel/..." aria-describedby="basic-addon1">
 							</div>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link video Youtube de 1 min para evaluación</label>
 			              <div class="input-group">
-							  <input required ng-model="user.video" type="text" class="form-control" placeholder="https://youtu.be/..." aria-describedby="basic-addon1">
-							  <span class="input-group-addon" id="basic-addon1">
+							  <span class="input-group-addon input-group-addon-network youtube" id="basic-addon1">
 							  	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png">
 							  </span>
+							  <input required ng-model="user.video" type="text" class="form-control" placeholder="https://youtu.be/..." aria-describedby="basic-addon1">
 							</div>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Descripción del perfil</label>
-			              <textarea required class="form-control" ng-model="user.perfil" rows="10" placeholder="..."></textarea>
+			              <textarea required class="form-control textarea" ng-model="user.perfil" rows="5" placeholder="..."></textarea>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Descripción del servicio ofrecido</label>
-			              <textarea required class="form-control" ng-model="user.descservicio" rows="10" placeholder="..."></textarea>
+			              <textarea required class="form-control textarea" ng-model="user.descservicio" rows="5" placeholder="..."></textarea>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Valor del servicio ofrecido</label>
 			              <div class="input-group">
 							  <span class="input-group-addon">$</span>
-							  <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" ng-model="user.valor" required>
+							  <input type="number" class="form-control" ng-model="user.valor" required>
 							</div>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="form-group">
 			              <label for="nameuser">Porcentaje descuento para calificadores</label>
 			              <div class="input-group">
+							  <input type="number" style="text-align: right;" min="0" max="100" step="1" class="form-control" id="nameuser" placeholder="20" ng-model="user.descuento" required>
 							  <span class="input-group-addon">%</span>
-							  <input type="number" min="0" max="100" step="1" class="form-control" id="nameuser" placeholder="Apellidos" ng-model="user.descuento" required>
 							</div>
 			            </div>
 			        </div>
-			        <div class="col-md-12">
-						<button type="submit" class="btn btn-default btn-block btn-artist">Enviar</button>
+			        <div class="col-md-2 col-md-offset-2">
+						<button type="button" ng-click="back_artist()" class="btn btn-default btn-block btn-back">Atras</button>
+					</div>
+			        <div class="col-md-2 col-md-offset-4">
+						<button type="submit" class="btn btn-default btn-block btn-next">Registarme</button>
 					</div>
 				</form>
 			</div>
@@ -210,67 +231,66 @@
 	</div>
 	<div class="row slide2" ng-show="slide == 2 && user.type == 3">
 		<div class="col-xs-12">
-			<h3>Calificador</h3>
 			<div class="row slide" ng-show="slide_calificador == 1">
-				<h4>Empresa del mercado cultural</h4>
+				<h4 class="col-md-8 col-md-offset-2"><span class="slide_number">{{slide_calificador}}</span>Datos de la empresa en el mercado cultural</h4>
 				<form ng-submit="next_slide_calificador()">
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">NIT Empresa</label>
 			              <input type="number" class="form-control" id="nameuser" placeholder="800.198.456-1" ng-model="user.cc_nit" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Nombres representante legal</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="Nombres" ng-model="user.first_name" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Apellidos representante legal</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="Apellidos" ng-model="user.last_name" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Correo electronico representante legal</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="user.email" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Contraseña</label>
 			              <input type="password" class="form-control" id="nameuser" placeholder="********" ng-model="user.pass" required>
 			            </div>
 					</div>
-					<div class="col-md-4 col-md-offset-4">
-						<button type="submit" class="btn btn-default btn-block btn-calificador">Continuar</button>
+					<div class="col-md-2 col-md-offset-8">
+						<button type="submit" class="btn btn-default btn-block btn-next">Continuar</button>
 					</div>
 				</form>
 			</div>
 			<div class="row" ng-show="slide_calificador == 2">
-				<h4>Empresa</h4>
+				<h4 class="col-md-8 col-md-offset-2"><span class="slide_number">{{slide_calificador}}</span>Perfil de la empresa en el mercado cultural</h4>
 				<form ng-submit="sent_signup_calificador()">
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Nombre de la empresa</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.nombre_calificador" required>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link foto de perfil</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.foto_perfil" required>
 			            </div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Link foto de portada</label>
 			              <input type="text" class="form-control" id="nameuser" placeholder="" ng-model="user.foto_portada" required>
 			            </div>
 					</div>
-					<!-- <div ng-class="{'col-md-6' : !category_has_sub(user.categoria),'col-md-3' : category_has_sub(user.categoria)}">
+					<!-- <div ng-class="{'col-md-8 col-md-offset-2' : !category_has_sub(user.categoria),'col-md-3' : category_has_sub(user.categoria)}">
 						<div class="form-group">
 			              <label for="nameuser">Categoria artística</label>
 			              <select class="form-control" required ng-change="change_subs(user.categoria)" ng-model="user.categoria">
@@ -286,42 +306,42 @@
 			              </select>
 			            </div>
 					</div> -->
-					<div class="col-md-12">
+					<div class="col-md-8 col-md-offset-2">
 						<div class="form-group">
 			              <label for="nameuser">Descripción del perfil</label>
-			              <textarea required class="form-control" ng-model="user.perfil" rows="10" placeholder="..."></textarea>
+			              <textarea required class="form-control textarea" ng-model="user.perfil" rows="5" placeholder="..."></textarea>
 			            </div>
 					</div>
-			        <div class="col-md-12">
-						<button type="submit" class="btn btn-default btn-block btn-calificador">Enviar</button>
+			        <div class="col-md-2 col-md-offset-2">
+						<button type="button" ng-click="back_calificador()" class="btn btn-default btn-block btn-back">Atras</button>
+					</div>
+			        <div class="col-md-2 col-md-offset-4">
+						<button type="submit" class="btn btn-default btn-block btn-next">Registarme</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<div  class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
+<div  class="modal fade modal-backgroung-custom login" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalPeriodLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="modalPeriodLabel">Ingreso a conexo</h4>
-        </div>
-        <form>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="modal-body">
+          <form>
             <div class="form-group">
-              <label for="nameuser">Correo electronico</label>
-              <input type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
+              <label class="bold" for="nameuser">Correo Electrónico</label>
+              <input production-qty type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
             </div>
             <div class="form-group">
-              <label for="nameuser">Contraseña</label>
+              <label class="bold" for="nameuser">Contraseña</label>
               <input type="password" class="form-control" id="nameuser" placeholder="Contraseña" ng-model="login.pass" required>
             </div>
+            <button ng-click="sent_login()" class="btn btn-default btn-block">Ingresar</button>
+            <a href="#" class="signup-span pull-left">Olvidé mi contraseña</a>
+            <a href="#/signup"  class="signup-span pull-right">Soy nuevo y quiero registrarme</a>
+          </form>
         </div>
-        <div class="modal-footer">
-          <button ng-click="sent_login()" class="btn btn-default">Ingresar</button>
-        </div>
-        </form>
       </div>
   </div>
 </div>

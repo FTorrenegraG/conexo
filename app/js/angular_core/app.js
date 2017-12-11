@@ -1,4 +1,4 @@
-var URL_Api = 'api'
+var URL_Api = 'http://10.90.28.9:9000/api'
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
