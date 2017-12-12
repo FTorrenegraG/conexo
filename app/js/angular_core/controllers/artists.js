@@ -51,9 +51,26 @@ angular.module("conexo")
 		})
 	}
 	$scope.searchDB($routeParams.artist_id)
+	function get_ID_youtube(string) {
+		if (string.indexOf("youtu.be") === -1){
+			var video_id = string.split('v=')[1];
+			var ampersandPosition = video_id.indexOf('&');
+			if(ampersandPosition != -1) {
+			  video_id = video_id.substring(0, ampersandPosition);
+			}
+			return video_id
+		}else{
+			var video_id = string.split('youtu.be/')[1];
+			var questionPosition = video_id.indexOf('?');
+			if(questionPosition != -1) {
+			  video_id = video_id.substring(0, questionPosition);
+			}
+			return video_id
+		}
+	}
 	$scope.get_url_youtube = function () {
 		if ($scope.artist)
-			return $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + $scope.artist.video)
+			return $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + get_ID_youtube($scope.artist.video))
 		else
 			return ''
 	}
