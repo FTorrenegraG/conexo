@@ -1,4 +1,8 @@
+var hostname = window.location.hostname;
 var URL_Api = 'http://10.90.28.9:9000/api'
+if (hostname.indexOf('clickco.co') > -1) {
+    URL_Api = 'http://www.clickco.co/conexo/api';
+};
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
