@@ -8280,6 +8280,21 @@ nav a {
       display: flex;
       align-items: center;
       margin-top: -15px; }
+    .navbar-transparent.nav-min .navbar-brand {
+      transition: all 0.8s linear;
+      margin-top: -5px;
+      position: absolute;
+      z-index: 1000;
+      height: 80px; }
+      .navbar-transparent.nav-min .navbar-brand img {
+        position: absolute;
+        transition: all 0.8s linear;
+        width: 200px;
+        height: 70px;
+        object-fit: cover;
+        object-position: 50% 50%; }
+        .navbar-transparent.nav-min .navbar-brand img.ng-hide {
+          opacity: 0; }
   .navbar-transparent .nav {
     height: 116px; }
   .navbar-transparent .login li:first-child:after {
@@ -8328,11 +8343,20 @@ nav a {
     .navbar-transparent .background-nav.ng-hide {
       opacity: 0; }
   .navbar-transparent .navbar-brand {
-    margin-top: 15px;
+    transition: all 0.8s linear;
+    margin-top: 10px;
     position: absolute;
-    z-index: 1000; }
+    z-index: 1000;
+    height: 100px; }
     .navbar-transparent .navbar-brand img {
-      border-radius: 50%; }
+      position: absolute;
+      transition: all 0.8s linear;
+      width: 200px;
+      height: 80px;
+      object-fit: cover;
+      object-position: 50% 50%; }
+      .navbar-transparent .navbar-brand img.ng-hide {
+        opacity: 0; }
   .navbar-transparent .navbar-center {
     width: 90%;
     position: absolute;
@@ -8603,9 +8627,15 @@ nav a {
   .info-home .margin-top {
     margin-top: 100px; }
   .info-home img {
+    position: absolute;
+    transition: all 0.3s linear;
     width: 100%;
+    top: -50px;
+    height: 400px;
     object-fit: cover;
     object-position: 50% 50%; }
+    .info-home img.ng-hide {
+      opacity: 0; }
   .info-home p {
     line-height: 35px;
     text-align: justify; }

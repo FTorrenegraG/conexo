@@ -16,6 +16,17 @@ angular.module("conexo")
 			email: ""
 		}
 	}
+	$scope.slide_b = 1
+	$scope.changeSlide = function () {
+		$timeout(function () {
+			$scope.slide_b += 1
+			if ($scope.slide_b >= 3){
+				$scope.slide_b = 1
+			}
+			$scope.changeSlide()
+		},4000)
+	}
+	$scope.changeSlide();
 	$scope.detailed_score = {};
 	$scope.searchDB = function (id) {
 		DataBaseService.getDB("/artist/"+id).success(function (data) {

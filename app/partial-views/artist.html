@@ -10,7 +10,8 @@
         <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="img/brandname.png">
+            <img ng-show="slide_b == 1" src="img/CONEXO31.png">
+            <img ng-show="slide_b == 2" src="img/CONEXO13.png">
         </a> 
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -136,9 +137,9 @@
               <div class="form-group">
                 <label for="nameuser">Descripción del servicio artístico </label>
                 <div class="dropdown">
-                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.contenido ? calification.contenido : '- Selecciona calificación del servicio -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.contenido ? calification.contenido : '- Selecciona calificación del servicio -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li class="manito" ng-click="calification.contenido = 1">Muy Mala</li>
                     <li class="manito" ng-click="calification.contenido = 2">Mala</li>
                     <li class="manito" ng-click="calification.contenido = 3">Buena</li>
@@ -150,9 +151,9 @@
               <div class="form-group">
                 <label for="nameuser">Propuesta artística</label>
                 <div class="dropdown">
-                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.propuesta ? calification.propuesta : '- Selecciona calificación de propuesta -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.propuesta ? calification.propuesta : '- Selecciona calificación de propuesta -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
                     <li class="manito" ng-click="calification.propuesta = 1">Muy Mala</li>
                     <li class="manito" ng-click="calification.propuesta = 2">Mala</li>
                     <li class="manito" ng-click="calification.propuesta = 3">Buena</li>
@@ -164,9 +165,9 @@
               <div class="form-group">
                 <label for="nameuser">Imagen artística</label>
                 <div class="dropdown">
-                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.imagen ? calification.imagen : '- Selecciona calificación de imagen -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.imagen ? calification.imagen : '- Selecciona calificación de imagen -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
                     <li class="manito" ng-click="calification.imagen = 1">Muy Mala</li>
                     <li class="manito" ng-click="calification.imagen = 2">Mala</li>
                     <li class="manito" ng-click="calification.imagen = 3">Buena</li>
@@ -178,9 +179,9 @@
               <div class="form-group">
                 <label for="nameuser">Calidad del contenido artístico</label>
                 <div class="dropdown">
-                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.calidad ? calification.calidad : '- Selecciona calificación de calidad -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                  <button class="btn btn-select btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{calification.calidad ? calification.calidad : '- Selecciona calificación de calidad -'}}<span class="glyphicon glyphicon-chevron-down pull-right"></span>
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu5">
                     <li class="manito" ng-click="calification.calidad = 1">Muy Mala</li>
                     <li class="manito" ng-click="calification.calidad = 2">Mala</li>
                     <li class="manito" ng-click="calification.calidad = 3">Buena</li>
@@ -220,8 +221,8 @@
               <input production-qty type="text" class="form-control" id="nameuser" placeholder="usuario@example.com" ng-model="login.email" required>
             </div>
             <div class="form-group">
-              <label class="bold" for="nameuser">Contraseña</label>
-              <input type="password" class="form-control" id="nameuser" placeholder="Contraseña" ng-model="login.pass" required>
+              <label class="bold" for="pass">Contraseña</label>
+              <input type="password" class="form-control" id="pass" placeholder="Contraseña" ng-model="login.pass" required>
             </div>
             <button ng-click="sent_login()" class="btn btn-default btn-block">Ingresar</button>
             <a href="#" class="signup-span pull-left">Olvidé mi contraseña</a>

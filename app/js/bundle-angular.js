@@ -132,6 +132,17 @@ angular.module("conexo")
 			email: ""
 		}
 	}
+	$scope.slide_b = 1
+	$scope.changeSlide = function () {
+		$timeout(function () {
+			$scope.slide_b += 1
+			if ($scope.slide_b >= 3){
+				$scope.slide_b = 1
+			}
+			$scope.changeSlide()
+		},4000)
+	}
+	$scope.changeSlide();
 	$scope.detailed_score = {};
 	$scope.searchDB = function (id) {
 		DataBaseService.getDB("/artist/"+id).success(function (data) {
@@ -232,6 +243,17 @@ angular.module("conexo")
 			email: ""
 		}
 	}
+	$scope.slide_b = 1
+	$scope.changeSlide = function () {
+		$timeout(function () {
+			$scope.slide_b += 1
+			if ($scope.slide_b >= 3){
+				$scope.slide_b = 1
+			}
+			$scope.changeSlide()
+		},4000)
+	}
+	$scope.changeSlide();
 	$scope.searchDB = function (id) {
 		DataBaseService.getDB("/calificador/"+id).success(function (data) {
 			$scope.calificador = data[0]
@@ -362,6 +384,7 @@ angular.module("conexo")
     ]
 	$scope.results = []
 	$scope.slide_i = 0
+	$scope.slide_b = 1
 	$scope.t_order = 3
 	$scope.reverse = true
 	$scope.propertyName = 'clasificacion'
@@ -400,8 +423,12 @@ angular.module("conexo")
 	$scope.changeSlide = function () {
 		$timeout(function () {
 			$scope.slide_i += 1
+			$scope.slide_b += 1
 			if ($scope.slide_i >= $scope.slides.length){
 				$scope.slide_i = 0
+			}
+			if ($scope.slide_b >= 3){
+				$scope.slide_b = 1
 			}
 			$scope.changeSlide()
 		},4000)
@@ -509,6 +536,17 @@ angular.module("conexo")
 			email: ""
 		}
 	}
+	$scope.slide_b = 1
+	$scope.changeSlide = function () {
+		$timeout(function () {
+			$scope.slide_b += 1
+			if ($scope.slide_b >= 3){
+				$scope.slide_b = 1
+			}
+			$scope.changeSlide()
+		},4000)
+	}
+	$scope.changeSlide();
 	$scope.type_users = [{id: 2, name: "Artista"},{id: 3, name: "Mercado Cultural"}]
 	$scope.categories = [
         {
