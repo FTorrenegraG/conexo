@@ -1,4 +1,8 @@
+var hostname = window.location.hostname;
 var URL_Api = 'http://10.90.28.9:9000/api'
+if (hostname.indexOf('clickco.co') > -1) {
+    URL_Api = 'http://www.clickco.co/conexo/api';
+};
 angular.module("conexo",['ngRoute','ngCookies', 'ngStorage','ngAnimate'])
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -116,6 +120,10 @@ angular.module("conexo")
 
 angular.module("conexo")
 .controller("artistsController",function ($scope,$routeParams,$timeout,DataBaseService,$sce,Session,$window) {
+	var prefix = '';
+	if (hostname.indexOf('clickco.co') > -1) {
+	    prefix = '/conexo';
+	};
 	if (Session.isAuth()){
 		var user = Session.getUser()
 		if (user){
@@ -227,23 +235,27 @@ angular.module("conexo")
 		DataBaseService.getDB("/artist/random/"+id).success(function  (data) {
 			if (data.status != 400){
 				$timeout(function  () {
-					$window.location.href = "/#/artists/"+data[0].id;
+					$window.location.href = prefix+"/#/artists/"+data[0].id;
 				})
 			}
 		})
 	}
 	$scope.goToProfile = function () {
 		if ($scope.current_user.user.type == 2){
-			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+			$window.location.href = prefix+"/#/artists/" + $scope.current_user.user_p.id;
 		}else{
 			if ($scope.current_user.user.type == 3){
-				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+				$window.location.href = prefix+"/#/calificador/" + $scope.current_user.user_p.id;	
 			}
 		}
 	}
 })
 angular.module("conexo")
 .controller("calificadorController",function ($scope,$routeParams,$timeout,DataBaseService,Session,$window) {
+	var prefix = '';
+	if (hostname.indexOf('clickco.co') > -1) {
+	    prefix = '/conexo';
+	};
 	if (Session.isAuth()){
 		var user = Session.getUser()
 		if (user){
@@ -281,7 +293,7 @@ angular.module("conexo")
 		DataBaseService.getDB("/artist/random/"+$scope.calificador.id).success(function  (data) {
 			if (data.status != 400){
 				$timeout(function  () {
-					$window.location.href = "/#/artists/"+data[0].id;
+					$window.location.href = prefix+"/#/artists/"+data[0].id;
 				})
 			}
 		})
@@ -291,16 +303,21 @@ angular.module("conexo")
 	}
 	$scope.goToProfile = function () {
 		if ($scope.current_user.user.type == 2){
-			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+			$window.location.href = prefix+"/#/artists/" + $scope.current_user.user_p.id;
 		}else{
 			if ($scope.current_user.user.type == 3){
-				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+				$window.location.href = prefix+"/#/calificador/" + $scope.current_user.user_p.id;	
 			}
 		}
 	}
 })
 angular.module("conexo")
 .controller("homeController",function ($scope,$timeout,DataBaseService,Session,$window) {
+	var prefix = '';
+	if (hostname.indexOf('clickco.co') > -1) {
+	    prefix = '/conexo';
+	};
+
 	if (Session.isAuth()){
 		var user = Session.getUser()
 		if (user){
@@ -478,9 +495,9 @@ angular.module("conexo")
 				$('#modalLogin').modal('hide');
 				$timeout(function(){
 					if (data.user_info[0].type == 2)
-						$window.location.href = "/#/artists/"+data.user_profile[0].id;
+						$window.location.href = prefix+"/#/artists/"+data.user_profile[0].id;
 					if (data.user_info[0].type == 3)
-						$window.location.href = "/#/calificador/"+data.user_profile[0].id;
+						$window.location.href = prefix+"/#/calificador/"+data.user_profile[0].id;
             	},500)
 			}else{
 				alert(data.notice.text)
@@ -495,10 +512,10 @@ angular.module("conexo")
 	}
 	$scope.goToProfile = function () {
 		if ($scope.current_user.user.type == 2){
-			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+			$window.location.href = prefix+"/#/artists/" + $scope.current_user.user_p.id;
 		}else{
 			if ($scope.current_user.user.type == 3){
-				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+				$window.location.href = prefix+"/#/calificador/" + $scope.current_user.user_p.id;	
 			}
 		}
 	}
@@ -534,12 +551,16 @@ angular.module("conexo")
 })
 angular.module("conexo")
 .controller("signupController",function ($scope,$routeParams,$timeout,DataBaseService,$sce,Session,$window) {
+	var prefix = '';
+	if (hostname.indexOf('clickco.co') > -1) {
+	    prefix = '/conexo';
+	};
 	if (Session.isAuth()){
 		var user = Session.getUser()
 		if (user){
 			$scope.current_user = user;
 			$timeout(function(){
-				$window.location.href = "/#/home";
+				$window.location.href = prefix+"/#/home";
             },100)
 		}else{
 			Session.deleteAll();
@@ -737,9 +758,9 @@ angular.module("conexo")
 				$('#modalLogin').modal('hide');
 				$timeout(function(){
 					if (data.user_info[0].type == 2)
-						$window.location.href = "/#/artists/"+data.user_profile[0].id;
+						$window.location.href = prefix+"/#/artists/"+data.user_profile[0].id;
 					if (data.user_info[0].type == 3)
-						$window.location.href = "/#/calificador/"+data.user_profile[0].id;
+						$window.location.href = prefix+"/#/calificador/"+data.user_profile[0].id;
             	},500)
 			}else{
 				alert(data.notice.text)
@@ -754,10 +775,10 @@ angular.module("conexo")
 	}
 	$scope.goToProfile = function () {
 		if ($scope.current_user.user.type == 2){
-			$window.location.href = "/#/artists/" + $scope.current_user.user_p.id;
+			$window.location.href = prefix+"/#/artists/" + $scope.current_user.user_p.id;
 		}else{
 			if ($scope.current_user.user.type == 3){
-				$window.location.href = "/#/calificador/" + $scope.current_user.user_p.id;	
+				$window.location.href = prefix+"/#/calificador/" + $scope.current_user.user_p.id;	
 			}
 		}
 	}
