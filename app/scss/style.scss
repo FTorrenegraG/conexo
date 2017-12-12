@@ -184,6 +184,25 @@ nav{
 			align-items: center;
 			margin-top: -15px;
 		}
+		.navbar-brand{
+			transition: all 0.8s linear;
+			margin-top: -5px;
+			position: absolute;
+			z-index: 1000;
+			// background-color: grey;
+			height: 80px;
+			img{
+				position: absolute;
+				transition: all 0.8s linear;
+				width: 200px;
+				height: 70px;
+				object-fit: cover;
+				object-position: 50% 50%;
+				&.ng-hide{
+					opacity: 0
+				}
+			}
+		}
 	}
     .nav{
 		height: $height_nav;
@@ -242,11 +261,22 @@ nav{
 		}
 	}
 	.navbar-brand{
-		margin-top: 15px;
+		transition: all 0.8s linear;
+		margin-top: 10px;
 		position: absolute;
 		z-index: 1000;
+		// background-color: grey;
+		height: 100px;
 		img{
-			border-radius: 50%;
+			position: absolute;
+			transition: all 0.8s linear;
+			width: 200px;
+			height: 80px;
+			object-fit: cover;
+			object-position: 50% 50%;
+			&.ng-hide{
+				opacity: 0
+			}
 		}
 	}
 	.navbar-center{
@@ -573,6 +603,7 @@ nav{
 .info-home{
 	transition: all 0.3s linear;
 	margin-bottom: 100px;
+	// overflow: auto;
 	&.ng-hide{
 		opacity: 0;
 	}
@@ -580,9 +611,16 @@ nav{
 		margin-top: 100px;
 	}
 	img{
+		position: absolute;	
+		transition: all 0.3s linear;
 		width: 100%;
+		top: -50px;
+		height: 400px;
 		object-fit: cover;
 		object-position: 50% 50%;
+		&.ng-hide{
+			opacity: 0;
+		}
 	}
 	p{
 		line-height: 35px;
